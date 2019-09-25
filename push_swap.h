@@ -17,5 +17,15 @@
 #include "libft.h"
 #include "ft_printf.h"
 
+#define SWAP		1u
+#define PUSH		2u
+#define ROT			4u
+#define RROT		8u
+
+typedef struct		s_op
+{
+	unsigned int	operation;
+	unsigned char	stack;
+}					t_op;
 
 #endif
