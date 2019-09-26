@@ -20,7 +20,7 @@
 #define SWAP		1u
 #define PUSH		2u
 #define ROT			4u
-#define RROT		8u
+#define REVROT		8u
 
 typedef struct		s_op
 {
@@ -28,4 +28,17 @@ typedef struct		s_op
 	unsigned char	stack;
 }					t_op;
 
+/*
+** validation
+ */
+t_list				*read_validate(int argc, char **argv);
+
+/*
+** utilites
+ */
+char				is_push(char ch);
+char				is_swap(char ch);
+char				is_rotate(char ch);
+void				free_ins(t_list **ins);
+void				print_ins(t_list **lst);
 #endif
