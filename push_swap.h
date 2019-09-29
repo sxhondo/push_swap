@@ -28,17 +28,23 @@ typedef struct		s_op
 	unsigned char	stack;
 }					t_op;
 
+void				apply_instruction(int *nums, t_list *ins, int arg_am);
+
 /*
 ** validation
  */
-t_list				*read_validate(int argc, char **argv);
+
+t_list				*read_instructions();
+int					*validate_arguments(int argc, char **argv);
 
 /*
 ** utilites
  */
+
 char				is_push(char ch);
 char				is_swap(char ch);
 char				is_rotate(char ch);
 void				free_ins(t_list **ins);
 void				print_ins(t_list **lst);
+void				put_error(int type);
 #endif

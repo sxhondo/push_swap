@@ -13,16 +13,19 @@
 NAME = checker
 CC = gcc
 # CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g
 
 LIB_DIR = libft
 LIB_INC = libft/incs
 
 SRCS_LIST=\
-	validation.c\
+	validate_arguments.c\
+	validate_instructions.c\
+	apply_instruction.c\
 	utilities.c\
 	main.c
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(SRCS_LIST) -L $(LIB_DIR) -lft -I $(LIB_INC)
+	$(CC) $(CFLAGS) $(SRCS_LIST) -L $(LIB_DIR) -lft -I $(LIB_INC)
