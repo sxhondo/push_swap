@@ -42,22 +42,6 @@ void			free_ins(t_list **ins)
 	}
 }
 
-void			print_ins(t_list **lst)
-{
-	t_list		*tmp;
-	int 		i;
-
-	i = 1;
-	tmp = *lst;
-	while (tmp)
-	{
-		ft_printf("\t[%d]\nOP-ON: %10d\nSTACK: %10c\n", i++,
-				  ((t_op *)tmp->content)->operation,
-				  ((t_op *)tmp->content)->stack);
-		tmp = tmp->next;
-	}
-}
-
 void			put_error(int type)
 {
 	write(2, "Error", 5);

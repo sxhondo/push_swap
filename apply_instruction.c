@@ -1,126 +1,137 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   apply_instruction.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/30 18:34:04 by sxhondo           #+#    #+#             */
+/*   Updated: 2019/09/30 18:34:07 by sxhondo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			do_swap(t_list **stack)
+void					print_stacks(t_list **a, t_list **b)
 {
-	t_list		*tmp;
+	t_list				*p_a;
+	t_list				*p_b;
 
-	if (ft_lstlen(stack) < 1)
+	if (a)
+		p_a = *a;
+	else
+		p_a = NULL;
+	if (b)
+		p_b = *b;
+	else
+		p_b = NULL;
+	ft_printf("\na\tb\n---------\n");
+	while (p_a || p_b)
 	{
-		ft_printf("\nnot enough elements on stack\n");
-		return;
-	}
-	tmp = (*stack)->next;
-	(*stack)->next = (*stack)->next->next;
-	tmp->next = *stack;
-	*stack = tmp;
-}
-
-void			do_push(t_list **a, t_list **b, char stack)
-{
-	t_list		*ptr;
-	t_list		*next;
-
-	if (stack == 'a')
-	{
-		ptr = *b;
-		if (!ptr || ft_lstlen(&ptr) == 0)
+		if (p_a)
 		{
-			ft_printf("b is empty\n");
-			return;
+			ft_printf("%d", *((int *)p_a->content));
+			p_a = p_a->next;
 		}
-		next = ptr->next; //save next elem in (B)
-		ptr->next = *a; //P_b->next points to head (A)
-		*a = ptr; //head (A) moved to new beginning
-		*b = next; //head (B) moved to next elem
-	}
-	else if (stack == 'b')
-	{
-		ptr = *a;
-		if (!ptr || ft_lstlen(&ptr) == 0)
+		ft_printf("\t");
+		if (p_b)
 		{
-			ft_printf("a is empty\n");
-			return;
+			ft_printf("%d", *((int *)p_b->content));
+			p_b = p_b->next;
 		}
-		next = ptr->next;
-		ptr->next = *b;
-		*b = ptr;
-		*a = next;
+		ft_printf("\n");
 	}
 }
 
-void			do_rot(t_list **stack)
+void					free_stacks(t_list **a, t_list **b)
 {
-	t_list		*ptr;
-	t_list		*next;
+	t_list				*curr;
+	t_list				*next;
 
-	if (ft_lstlen(stack) == 1)
-		return;
-	ptr = *stack;
-	next = ptr->next; // save next
-	ptr->next = NULL; // first elem points to NULL
-	*stack = next; // head now on saved (second) elem
-	while ((*stack)->next) // iter to the last elem
-		*stack = (*stack)->next;
-	(*stack)->next = ptr;
-	*stack = next;
+	curr = *a;
+	while (curr)
+	{
+		next = curr->next;
+		ft_memdel(&curr->content);
+		free(curr);
+		curr = next;
+	}
+	*a = NULL;
+	curr = *b;
+	while (curr)
+	{
+		next = curr->next;
+		ft_memdel(&curr->content);
+		free(curr);
+		curr = next;
+	}
+	*b = NULL;
 }
 
-void			do_rev_rot(t_list **stack)
+t_list					*fill_a(int *nums, unsigned arg_am)
 {
-	t_list		*ptr;
-	t_list		*save;
-
-	if (ft_lstlen(stack) == 1)
-		return;
-	ptr = *stack;
-	while (ptr->next->next)
-		ptr = ptr->next;
-	save = ptr->next;
-	ptr->next = NULL;
-	save->next = *stack;
-	*stack = save;
-}
-
-void			apply_instruction(int *nums, t_list *ins, int arg_am)
-{
-	//*((int *)node->content)
-	t_list		*a;
-	t_list		*b;
-	t_list		*node;
-	int 		i, t;
+	int 				i;
+	t_list				*node;
+	t_list				*res;
 
 	i = 0;
-	a = NULL;
-	b = NULL;
-
+	res = NULL;
 	while (i < arg_am)
 	{
 		if (!(node = ft_lstnew(&nums[i], sizeof(int))))
-			return;
-		ft_lstpushback(&a, node);
+			return (NULL);
+		ft_lstpushback(&res, node);
 		i++;
 	}
-
-	for (t = 4, i = 0; i < arg_am; i++, t++)
-		ft_lstpushback(&b, ft_lstnew(&t, sizeof(int)));
-
-//	do_swap(&a);
-//	do_push(&a, &b, 'b');
-//	do_rot(&b);
-//	do_rev_rot(&b);
-
-
-	while (a)
-	{
-		ft_printf("A: %d\n", *((int *)a->content));
-		a = a->next;
-	}
-	ft_printf("\n---\n");
-	while (b)
-	{
-		ft_printf("B: %d\n", *((int *)b->content));
-		b = b->next;
-	}
-
+	return (res);
 }
+
+static void				apply_instruction(int *nums, t_list *ins, unsigned arg_am)
+{
+	t_list				*a;
+	t_list				*b;
+	unsigned 			op;
+	unsigned char 		st;
+
+	b = NULL;
+	a = fill_a(nums, arg_am);
+	print_stacks(&a, &b);
+	while (ins)
+	{
+		op = ((t_op *)ins->content)->operation;
+		st = ((t_op *)ins->content)->stack;
+		ft_printf("\n[%s][%c]\n", (op == 1 ? ("swap") :
+		op == 2 ? "push" : op == 4 ? "rotate" : op == 8 ? "rev_rotate" : 0),
+				  st == 'a' ? 'a' : st == 'b' ? 'b' : 'x');
+		if (op & SWAP)
+			st == 'a' ? do_swap(&a) : st == 'b' ? do_swap(&b)
+			: (do_swap(&a), do_swap(&b));
+		else if (op & PUSH)
+			st == 'a' ? do_push(&a, &b, 'a')
+			: st == 'b' ? do_push(&a, &b, 'b') : NULL;
+		else if (op & ROT)
+			st == 'a' ? do_rot(&a) : st == 'b' ? do_rot(&b)
+			: (do_rot(&a), do_rot(&b));
+		else if (op & REVROT)
+			st == 'a' ? do_rev_rot(&a) : st == 'b' ? do_rev_rot(&b)
+			: (do_rev_rot(&a), do_rev_rot(&b));
+		print_stacks(&a, &b);
+		ins = ins->next;
+	}
+	ft_printf("%s\n", (b ? "KO": "OK"));
+	free_stacks(&a, &b);
+}
+
+//int 			main(int argc, char **argv)
+//{
+//	int 		*nums;
+//	t_list		*ins;
+//
+//	nums = validate_arguments(argc - 1, argv);
+//	if (!(ins = read_instructions()))
+//		return (0);
+//	apply_instruction(nums, ins, argc - 1);
+//
+//	free (nums);
+//	free_ins(&ins);
+//}

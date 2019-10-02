@@ -14,27 +14,28 @@
 
 static void		get_instruction(char *str, t_op *op, int bytes)
 {
-	while (*str)
+	if (*str == 's' && ++str)
 	{
-		if (*str == 's' && ++str)
+		op->operation |= SWAP;
+		op->stack = is_swap(*str);
+	}
+	else if (*str == 'p' && ++str)
+	{
+		op->operation |= PUSH;
+		op->stack = is_push(*str);
+	}
+	else if (*str == 'r' && ++str)
+	{
+		if (*str == 'r' && bytes == 4 && ++str)
 		{
-			op->operation |= SWAP;
-			op->stack = is_swap(*str++);
+			op->operation |= REVROT;
+			op->stack = is_rotate(*str);
 		}
-		else if (*str == 'p' && ++str)
+		else if (bytes == 3)
 		{
-			op->operation |= PUSH;
-			op->stack = is_push(*str);
+			op->operation |= ROT;
+			op->stack = is_rotate(*str);
 		}
-		else if (*str == 'r' && ++str)
-		{
-			op->operation |= (bytes == 3) ? ROT : REVROT;
-			op->stack = op->operation & ROT ?
-						is_rotate(*str) : is_rotate(*++str);
-			str++;
-		}
-		else
-			break ;
 	}
 }
 
@@ -56,9 +57,6 @@ static t_op		*parse_instruction(char *buf, int bytes)
 	return (ops);
 }
 
-
-//todo: r*r
-
 t_list			*read_instructions()
 {
 	char 		buf[10];
@@ -79,8 +77,8 @@ t_list			*read_instructions()
 		}
 		if (!(node = ft_lstnew(ops, sizeof(ops))))
 			return (NULL);
-		free (ops);
 		ft_lstpushback(&instr, node);
+		free (ops);
 	}
 	return (instr);
 }

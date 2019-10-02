@@ -10,7 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = checker
+CH = checker
+PS = push_swap
+
 CC = gcc
 # CFLAGS = -Wall -Wextra -Werror
 CFLAGS = -g
@@ -18,14 +20,26 @@ CFLAGS = -g
 LIB_DIR = libft
 LIB_INC = libft/incs
 
-SRCS_LIST=\
+CH_SRCS=\
 	validate_arguments.c\
-	validate_instructions.c\
+	apply_instruction.c\
+	checker.c\
+	instructions.c\
+	utilities.c
+
+PS_SRCS=\
+	push_swap.c\
+	instructions.c\
+	validate_arguments.c\
 	apply_instruction.c\
 	utilities.c\
+	checker.c\
 	main.c
 
-all: $(NAME)
+all: $(PS)
 
-$(NAME):
-	$(CC) $(CFLAGS) $(SRCS_LIST) -L $(LIB_DIR) -lft -I $(LIB_INC)
+$(CH): $(CH_SRCS)
+	$(CC) $(CFLAGS) $(CH_SRCS) -L $(LIB_DIR) -lft -I $(LIB_INC) -o $(CH)
+
+$(PS): $(PS_SRCS)
+	$(CC) $(CFLAGS) $(PS_SRCS) -L $(LIB_DIR) -lft -I $(LIB_INC) -o $(PS)

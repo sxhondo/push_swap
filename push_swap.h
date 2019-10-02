@@ -28,14 +28,30 @@ typedef struct		s_op
 	unsigned char	stack;
 }					t_op;
 
-void				apply_instruction(int *nums, t_list *ins, int arg_am);
+/*
+** push_swap
+ */
 
+void 				sort_stacks(int *nums, unsigned arg_am);
+
+
+t_list				*fill_a(int *nums, unsigned arg_am);
+void				print_stacks(t_list **a, t_list **b);
+void				free_stacks(t_list **a, t_list **b);
 /*
 ** validation
  */
 
 t_list				*read_instructions();
 int					*validate_arguments(int argc, char **argv);
+
+/*
+** instructions
+ */
+void				do_swap(t_list **stack);
+void				do_push(t_list **a, t_list **b, char in);
+void				do_rot(t_list **stack);
+void				do_rev_rot(t_list **stack);
 
 /*
 ** utilites
