@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+void					print_hor(t_list **a, t_list **b)
+{
+	t_list				*pa = *a;
+	t_list				*pb = *b;
+
+	for (; pa; pa = pa->next)
+		ft_printf("%d\t", *((int*)pa->content));
+	ft_printf("\n");
+	for (; pb; pb = pb->next)
+		ft_printf("%d\t", *((int*)pb->content));
+	ft_printf("\n");
+}
+
 void					print_stacks(t_list **a, t_list **b)
 {
 	t_list				*p_a;
@@ -25,6 +38,7 @@ void					print_stacks(t_list **a, t_list **b)
 		p_b = *b;
 	else
 		p_b = NULL;
+
 	ft_printf("\na\tb\n---------\n");
 	while (p_a || p_b)
 	{

@@ -37,6 +37,7 @@ void 				sort_stacks(int *nums, unsigned arg_am);
 
 t_list				*fill_a(int *nums, unsigned arg_am);
 void				print_stacks(t_list **a, t_list **b);
+void				print_hor(t_list **a, t_list **b);
 void				free_stacks(t_list **a, t_list **b);
 /*
 ** validation
