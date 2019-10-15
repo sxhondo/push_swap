@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+int 			operations;
+
 /*
 int				brute_force(t_list **a, t_list **b)
 {
@@ -52,87 +54,6 @@ int				brute_force(t_list **a, t_list **b)
 	brute_force(a, b);
 	return (1);
 }
-*/
-
-int 			is_sorted(t_list **stack)
-{
-	t_list		*tmp;
-
-	tmp = *stack;
-	if (!tmp)
-		return (1);
-	while (tmp->next)
-	{
-		if (*((int *)tmp->content) < *((int *)tmp->next->content))
-			tmp = tmp->next;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int 			is_back_sorted(t_list **stack)
-{
-	t_list		*tmp;
-
-	tmp = *stack;
-	while (tmp->next)
-	{
-		if (*((int *)tmp->content) > *((int *)tmp->next->content))
-			tmp = tmp->next;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-
-int 			find_index(t_list **stack, int min)
-{
-	t_list		*tmp;
-	int 		i;
-
-	i = 0;
-	tmp = *stack;
-	while (tmp)
-	{
-		if (*((int *)tmp->content) == min)
-			return (i);
-		i++;
-		tmp = tmp->next;
-	}
-	return (-1);
-}
-
-int 			get_value_for_index(t_list **stack, int index)
-{
-	t_list		*tmp;
-
-	tmp = *stack;
-	while (index)
-	{
-		tmp = tmp->next;
-		index--;
-	}
-	return (*((int *)tmp->content));
-}
-
-void			value_to_top(t_list **stack, int value)
-{
-	int 		llen;
-	int 		value_i;
-
-	llen = ft_lstlen(stack);
-	value_i = find_index(stack, value);
-	if (value_i < llen / 2)
-		while (value_i--)
-			do_rot(stack);
-	else
-		while (value_i++ <= llen - 1)
-			do_rev_rot(stack);
-}
-
-
 int 			check_max(t_list **stack, int k_val)
 {
 	t_list		*tmp;
@@ -147,7 +68,7 @@ int 			check_max(t_list **stack, int k_val)
 	return (1);
 }
 
-int				find_min_max(t_list **stack, int mix) /* 0 - min, 1 - max */
+int				find_min_max(t_list **stack, int mix)
 {
 	t_list		*i;
 	t_list		*j;
@@ -174,71 +95,110 @@ int				find_min_max(t_list **stack, int mix) /* 0 - min, 1 - max */
 	}
 	return (-1);
 }
+*/
 
-//void			make_pairs(t_list **a, t_list **b)
-//{
-//	int 		min_len = ft_lstlen(a) > ft_lstlen(b) ?
-//			ft_lstlen(b) : ft_lstlen(a);
-//
-//	while (min_len--)
-//	{
-//		int 		top_a = *((int *)(*a)->content);
-//		int 		top_b = *((int *)(*b)->content);
-//		if (top_a > top_b)
-//		{
-//			do_push(a, b, 'b');
-//			do_rot(b);
-//			do_push(a, b, 'a');
-//			do_rot(a);
-//			print_stacks(a, b);
-//		}
-//		else
-//		{
-//			do_rot(a);
-//			do_rot(b);
-//		}
-//		print_stacks(a, b);
-//	}
-//}
-//
-//void			make_groups(t_list **a, t_list **b)
-//{
-//
-//
-//	int i = 5;
-//	while (i--)
-//	{
-//		int 		top_a = *((int *)(*a)->content);
-//		int 		top_a_next = *((int *)(*a)->next->content);
-//		int 		top_b = *((int *)(*b)->content);
-//		int 		top_b_next = *((int *)(*b)->next->content);
-//
-//		if (top_a > top_a_next)
-//		{
-//			do_swap(a);
-//			do_rot(a);
-//			print_stacks(a, b);
-//		}
-//		if (top_a < top_b_next)
-//		{
-//			do_rot(a);
-//			print_stacks(a, b);
-//		}
-//	}
-//	print_stacks(a, b);
-//}
-//
-//void			merge_sort(t_list **a, t_list **b)
-//{
-//	int 		med = ft_lstlen(a) / 2;
-//
-//	while (med--)
-//		do_push(a, b, 'b');
-//	print_stacks(a, b);
-//
-//	make_pairs(a, b);
-//	make_groups(a, b);
-//}
+int 			get_value_for_index(t_list **stack, int index)
+{
+	t_list		*tmp;
+
+	tmp = *stack;
+	while (index)
+	{
+		tmp = tmp->next;
+		index--;
+	}
+	return (*((int *)tmp->content));
+}
+
+int 			find_index(t_list **stack, int min)
+{
+	t_list		*tmp;
+	int 		i;
+
+	i = 0;
+	tmp = *stack;
+	while (tmp)
+	{
+		if (*((int *)tmp->content) <= min)
+			return (i);
+		i++;
+		tmp = tmp->next;
+	}
+	return (-1);
+}
+
+int				rot_to_top(t_list **stack, int value)
+{
+	int 		llen;
+	int 		value_i;
+
+	llen = ft_lstlen(stack);
+	value_i = find_index(stack, value);
+	print_stacks(stack, NULL);
+	if (value_i < 0)
+		return (0);
+	if (value_i <= llen / 2)
+		while (value_i--)
+			{do_rot(stack); operations++; print_stacks(stack, NULL);}
+	else
+		while (value_i++ <= llen - 1)
+			{do_rev_rot(stack); operations++; print_stacks(stack, NULL);}
+}
+
+int 			is_sorted(t_list **stack, char ch)
+{
+	t_list		*tmp;
+
+	tmp = *stack;
+	if (!tmp)
+		return (1);
+	while (tmp->next)
+	{
+		if (*((int *)tmp->content) < *((int *)tmp->next->content))
+			tmp = tmp->next;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int			catch_swap(t_list **a, t_list **b, char stack)
+{
+	int 	top;
+	int 	top_next;
+
+	top = 0;
+	top_next = 0;
+	if (((*a) || (*b)) && ft_lstlen(stack == 'a' ? a : b) == 2)
+	{
+		top = stack == 'a' ? *((int *)(*a)->content)
+				: *((int *)(*b)->content);
+		top_next = stack == 'a' ? *((int *)(*a)->next->content)
+				: *((int *)(*b)->next->content);
+	}
+	if (top > top_next)
+	{
+		do_swap(stack == 'a' ? a : b);
+		operations++;
+		return (1);
+	}
+	return (0);
+
+}
+
+int 			check_max(t_list **stack, int value)
+{
+	t_list		*tmp;
+
+	tmp = *stack;
+	while (tmp)
+	{
+		if (*((int *)tmp->content) > value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
 
 int				partition(t_list **a, t_list **b,
 						int m_index, int right, char stack)
@@ -247,77 +207,96 @@ int				partition(t_list **a, t_list **b,
 	int 		top;
 	int 		i;
 
-	i = 0;
-	top = stack == 'a' ? *((int *)(*a)->content) : *((int *)(*b)->content);
 	k_val = get_value_for_index(stack == 'a' ? a : b, m_index);
+	if (check_max(stack == 'a' ? a : b, k_val))
+	{
+		i = ft_lstlen(stack == 'a' ? a : b) - 1;
+		k_val = get_value_for_index(stack == 'a' ? a : b, i);
+	}
+	i = 0;
+	print_stacks(a, b);
 
+	while ((rot_to_top(stack == 'a' ? a : b, k_val)) > 0)
+	{
+		do_push(a, b, stack == 'a' ? 'b' : 'a');
+		operations++;
+		print_stacks(a, b);
+		i++;
+	}
+
+/*
 	while (right--)
 	{
 		top = stack == 'a' ? *((int *)(*a)->content) : *((int *)(*b)->content);
 		if (top <= k_val)
 		{
 			do_push(a, b, stack == 'a' ? 'b' : 'a');
+			print_stacks(a, b);
+			operations++;
 			i++;
 			continue;
 		}
+		operations++;
 		do_rot(stack == 'a' ? a : b);
+		print_stacks(a, b);
 	}
+*/
 	return (i);
 }
 
-void		quick_sort(t_list **a, t_list **b,
-						   int n, char stack)
+void				quick_sort(t_list **a, t_list **b,
+						int n, char stack)
 {
+	if (is_sorted(stack == 'a' ? a : b, stack))
+		return;
 	if (n == 0)
-		return ;
-
+		return;
 	int top_half_len = 0;
 	int tmp = 0;
 	int m_index = n - 1;
 
 	print_stacks(a, b);
+	if (catch_swap(a, b, stack))
+		return;
 
 	top_half_len = partition(a, b, m_index, n, stack);
 	print_stacks(a, b);
 
+	catch_swap(a, b, stack);
 	tmp =  n - top_half_len;
-	while (tmp--)
-		do_rev_rot(stack == 'a' ? a : b);
+	while (tmp--){
+		do_rev_rot(stack == 'a' ? a : b); operations++;}
 
 	tmp = top_half_len;
 	while (tmp--)
-		do_push(a, b, stack);
-
-
+	{do_push(a, b, stack); operations++; }
 	print_stacks(a, b);
-	if (!is_sorted(a))
-		quick_sort(a, b, top_half_len - 1, 'a');
-	if (!is_sorted(b))
-		quick_sort(a, b, ft_lstlen(b), 'b');
-	tmp = ft_lstlen(b);
+	tmp = top_half_len - 1 ? top_half_len - 1 :
+							ft_lstlen(stack == 'a' ? a : b);
+	quick_sort(a, b, tmp, stack);
 }
 
 void 			sort_stacks(int *nums, unsigned arg_am)
 {
+	int 		llen;
 	t_list		*a;
 	t_list		*b;
 
+	operations = 0;
 	b = NULL;
 	a = fill_a(nums, arg_am);
-//	ops = brute_force(&a, &b);
+	llen = ft_lstlen(&a);
 
-
-//	for (int med = ft_lstlen(&a) / 2; med; med--)
-//		do_push(&a, &b, 'b');
-	partition(&a, &b, ft_lstlen(&a) - 1, ft_lstlen(&a), 'a');
+	partition(&a, &b, llen / 2, llen, 'a');
 
 	print_stacks(&a, &b);
 	quick_sort(&a, &b, ft_lstlen(&a), 'a');
+	quick_sort(&a, &b, ft_lstlen(&b), 'b');
 
-	print_stacks(&a, &b);
 	for (int i = ft_lstlen(&b); i; i--)
-		{do_rev_rot(&b); do_push(&a, &b, 'a');}
+		{do_rev_rot(&b);  do_push(&a, &b, 'a'); print_stacks(&a, &b); operations++;}
 
 	print_stacks(&a, &b);
+	ft_printf("operations: %d\n", operations);
 	free_stacks(&a, &b);
 }
