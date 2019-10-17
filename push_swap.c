@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+int 				ops;
+
 /*
 int 			check_max(t_list **stack, int k_val)
 {
@@ -67,13 +69,13 @@ int				brute_force(t_list **a, t_list **b)
 	top_a = *a ? *((int *)(*a)->content) : 0;
 	top_b = *b ? *((int *)(*b)->content) : 0;
 	if (top_a > top_b)
-		{do_push(a, b, 'b'); ft_printf("pb\n");}
+		{do_push(a, b, 'b'); ft_printf("pb\n"); ops++;}
 	else
 	{
 		i = 0;
 		while (top_a < top_b)
 		{
-			do_push(a, b, 'a'); ft_printf("pa\n");
+			do_push(a, b, 'a'); ft_printf("pa\n"); ops++;
 			if ((*b))
 				top_b = *((int *)(*b)->content);
 			else
@@ -83,9 +85,9 @@ int				brute_force(t_list **a, t_list **b)
 		j = i;
 		while (i--)
 			do_rot(a);
-		do_push(a, b, 'b'); ft_printf("pb\n");
+		do_push(a, b, 'b'); ft_printf("pb\n"); ops++;
 		while (i++ < j)
-			{do_rev_rot(a); ft_printf("rra\n");}
+			{do_rev_rot(a); ft_printf("rra\n");} ops++;
 	}
 //	print_stacks(a, b);
 	brute_force(a, b);
@@ -123,7 +125,7 @@ int 			find_less(t_list **stack, int min)
 	return (-1);
 }
 
-int				rot_to_top(t_list **stack, int k_val, char st)
+int					rot_to_top(t_list **stack, int k_val, char st)
 {
 	int 		llen;
 	int 		value_i;
@@ -133,11 +135,23 @@ int				rot_to_top(t_list **stack, int k_val, char st)
 	if (value_i < 0)
 		return (0);
 	if (value_i <= llen / 2)
-		while (value_i--)
-			{do_rot(stack); ft_printf("r%c\n", st);}
+	{
+		while (value_i-- > 0)
+		{
+			do_rot(stack);
+			ft_printf("r%c\n", st);
+			ops++;
+		}
+	}
 	else
+	{
 		while (value_i++ <= llen - 1)
-		{do_rev_rot(stack); ft_printf("rr%c\n", st);}
+		{
+			do_rev_rot(stack);
+			ft_printf("rr%c\n", st);
+			ops++;
+		}
+	}
 	return (1);
 }
 
@@ -175,7 +189,7 @@ int			catch_swap(t_list **a, t_list **b, char stack)
 	if (top > top_next)
 	{
 		do_swap(stack == 'a' ? a : b);
-		ft_printf("s%c\n", stack == 'a' ? 'a' : 'b');
+		ft_printf("s%c\n", stack == 'a' ? 'a' : 'b'); ops++;
 		return (1);
 	}
 	return (0);
@@ -214,16 +228,67 @@ int				partition(t_list **a, t_list **b,
 	while ((rot_to_top(stack == 'a' ? a : b, k_val, stack)))
 	{
 		do_push(a, b, stack == 'a' ? 'b' : 'a');
-		ft_printf("p%c\n", stack == 'a' ? 'b' : 'a');
-//		print_stacks(a, b);
+		ft_printf("p%c\n", stack == 'a' ? 'b' : 'a'); ops++;
 		i++;
 	}
+//	print_stacks(a, b);
 	return (i);
+}
+
+int 				count_connections(t_list **stack)
+{
+	int 			i;
+	t_list			*tmp;
+
+	i = 0;
+	tmp = *stack;
+	while (tmp->next)
+	{
+		if (*((int *)tmp->content) < *((int *)tmp->next->content))
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+void				smart_swap(t_list **stack, char st)
+{
+	t_list			*tmp;
+	int 			top;
+	int 			cur;
+	int 			nex;
+	int 			i;
+
+	i = 0;
+	tmp = *stack;
+	top = cur = *((int *)tmp->content);
+	nex = *((int *)tmp->next->content);
+	while (tmp && cur < nex)
+	{
+		cur = *((int *)tmp->content);
+		nex = *((int *)tmp->next->content);
+		tmp = tmp->next;
+		i++;
+	}
+//	print_stacks(stack, NULL);
+	rot_to_top(stack, cur, st);
+//	print_stacks(stack, NULL);
+	do_swap(stack);
+//	print_stacks(stack, NULL);
+	rot_to_top(stack, top, st);
+//	print_stacks(stack, NULL);
+
 }
 
 void				quick_sort(t_list **a, t_list **b,
 						int n, char stack)
 {
+
+	if (catch_swap(a, b, stack))
+		return;
+	//debug it
+//	if (count_connections(stack == 'a' ? a : b) == (n - 2))
+//		smart_swap(stack == 'a' ? a : b, stack);
 	if (is_sorted(stack == 'a' ? a : b))
 		return;
 	if (n == 0)
@@ -232,24 +297,21 @@ void				quick_sort(t_list **a, t_list **b,
 	int tmp = 0;
 	int m_index = n - 1;
 
-	if (catch_swap(a, b, stack))
-		return;
 
 	top_half_len = partition(a, b, m_index, stack);
+//	print_stacks(a, b);
+
 	catch_swap(a, b, stack);
-	tmp =  n - top_half_len;
 
-
-	while (tmp--)
-	{
-		do_rev_rot(stack == 'a' ? a : b); ft_printf("rr%c\n", stack);
-	}
-
+//	tmp =  n - top_half_len;
+//	while (tmp--)
+//	{
+//		do_rev_rot(stack == 'a' ? a : b); ft_printf("rr%c\n", stack);
+//	}
 
 	tmp = top_half_len;
 	while (tmp--)
-		{do_push(a, b, stack); ft_printf("p%c\n", stack);}
-//	print_stacks(a, b);
+		{do_push(a, b, stack); ft_printf("p%c\n", stack); ops++;}
 	tmp = top_half_len - 1 ? top_half_len - 1 :
 							ft_lstlen(stack == 'a' ? a : b);
 	quick_sort(a, b, tmp, stack);
@@ -261,22 +323,24 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 	t_list		*a;
 	t_list		*b;
 
+	ops = 0;
 	b = NULL;
 	a = fill_a(nums, arg_am);
 	llen = ft_lstlen(&a);
 
 //	brute_force(&a, &b);
 
-	partition(&a, &b, llen / 2, 'a');
+	partition(&a, &b, 0, 'a');
 	quick_sort(&a, &b, ft_lstlen(&a), 'a');
+//	print_stacks(&a, &b);
 	quick_sort(&a, &b, ft_lstlen(&b), 'b');
-
+//	print_stacks(&a, &b);
 	for (int i = ft_lstlen(&b); i; i--)
 	{
 		do_rev_rot(&b);
-		do_push(&a, &b, 'a'); ft_printf("pa\n");
+		do_push(&a, &b, 'a'); ft_printf("pa\n"); ops++;
 	}
-
 //	print_stacks(&a, &b);
+//	ft_printf("\n[%d]\n", ops);
 	free_stacks(&a, &b);
 }
