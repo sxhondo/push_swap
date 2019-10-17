@@ -62,6 +62,5 @@ char				is_push(char ch);
 char				is_swap(char ch);
 char				is_rotate(char ch);
 void				free_ins(t_list **ins);
-void				print_ins(t_list **lst);
 void				put_error(int type);
 #endif

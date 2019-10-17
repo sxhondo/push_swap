@@ -12,20 +12,20 @@
 
 #include "push_swap.h"
 
+
+
 void			do_swap(t_list **stack)
 {
 	t_list		*tmp;
 
 	if (!*stack || ft_lstlen(stack) < 1)
-	{
-		ft_printf("not enough elements on stack\n");
 		return;
-	}
 	tmp = (*stack)->next;
 	(*stack)->next = (*stack)->next->next;
 	tmp->next = *stack;
 	*stack = tmp;
 }
+
 
 void			do_push(t_list **a, t_list **b, char in)
 {
@@ -34,7 +34,7 @@ void			do_push(t_list **a, t_list **b, char in)
 	if (in == 'a')
 	{
 		ptr = *b;
-		if (!ptr && ft_printf("b is empty"))
+		if (!ptr)
 			return ;
 		*b = (*b)->next;
 		ptr->next = *a;
@@ -43,7 +43,7 @@ void			do_push(t_list **a, t_list **b, char in)
 	else if (in == 'b')
 	{
 		ptr = *a;
-		if (!ptr && ft_printf("b is empty"))
+		if (!ptr)
 			return ;
 		*a = (*a)->next;
 		ptr->next = *b;
