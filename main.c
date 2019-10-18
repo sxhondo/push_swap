@@ -1,5 +1,8 @@
 #include "push_swap.h"
 
+
+//13 2 7 19 9
+//4 1 18 11 20 17
 int 	main(int ac, char **av)
 {
 	int 	*nums;
