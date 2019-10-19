@@ -262,39 +262,6 @@ int 			is_sorted(t_list **stack, int mode) /* 0 - sorted, 1 - back sorted */
 	return (1);
 }
 
-int			catch_swap(t_list **a, t_list **b, char stack)
-{
-	int 	top_a = 0;
-	int 	top_b = 0;
-	int 	top_a_next = 0;
-	int 	top_b_next = 0;
-
-
-	if (((*a) && ft_lstlen(a) >= 2))
-	{
-		top_a = *((int *)(*a)->content);
-		top_a_next = *((int *)(*a)->next->content);
-	}
-	if ((*b) && ft_lstlen(b) >= 2)
-	{
-		top_b = *((int *)(*b)->content);
-		top_b_next = *((int *)(*b)->next->content);
-	}
-
-	if (top_a > top_a_next)
-	{
-		do_swap(a);
-		ft_printf("s%c\n", 'a'); ops++;
-	}
-	if (top_b > top_b_next)
-	{
-		do_swap(b);
-		ft_printf("s%c\n", 'a'); ops++;
-	}
-	return (0);
-
-}
-
 int 			find_minmax(t_list **stack, int mode)
 {
 	t_list		*i;
@@ -322,23 +289,19 @@ int				partition(t_list **a, t_list **b,
 {
 	int 		k_val;
 	int 		i;
-	int 		j;
 
 	if (stack == 'a' && (*a) && is_sorted(a, 0))
 		return (0);
 	if (stack == 'b' && (*b) && is_sorted(b, 1))
 		return (0);
-	j = 0;
-	k_val = get_value_for_index(stack == 'a' ? a : b, m_index);
-	while (k_val == find_minmax(stack == 'a' ? a : b, 0)
-		   || k_val == find_minmax(stack == 'a' ? a : b, 1))
-		k_val = get_value_for_index(stack == 'a' ? a : b, j++);
 	i = 0;
-	while ((rot_to_top(stack == 'a' ? a : b, k_val, stack)))
+	k_val = get_value_for_index(stack == 'a' ? a : b, m_index);
+	while ((rot_to_top(stack == 'a' ? a : b, k_val, stack)) > 0)
 	{
-		print_stacks(a, b);
 		do_push(a, b, stack == 'a' ? 'b' : 'a');
-		ft_printf("p%c\n", stack == 'a' ? 'b' : 'a'); ops++;
+//		print_stacks(a, b);
+		ft_printf("p%c\n", stack == 'a' ? 'b' : 'a');
+		ops++;
 		i++;
 	}
 //	print_stacks(a, b);
@@ -348,11 +311,7 @@ int				partition(t_list **a, t_list **b,
 void				quick_sort(t_list **a, t_list **b,
 							   int n, char stack)
 {
-
-	if (catch_swap(a, b, stack))
-		return;
-
-	if (is_sorted(stack == 'a' ? a : b, stack == 'a' ? 0 : 1)
+  	if (is_sorted(stack == 'a' ? a : b, stack == 'a' ? 0 : 1)
 		|| n == 0 || n == 1)
 		return;
 
@@ -360,24 +319,25 @@ void				quick_sort(t_list **a, t_list **b,
 	int tmp = 0;
 	int m_index = n - 1;
 
-	print_stacks(a, b);
+//	print_stacks(a, b);
 	top_half_len = partition(a, b, m_index, stack);
-	print_stacks(a, b);
-	catch_swap(a, b, stack);
+	if (ft_lstlen(a) == 2)
+		*((int *)(*a)->content) > *((int *)(*a)->next->content) ? do_swap(a) : NULL;
+//	print_stacks(a, b);
 
 	tmp = top_half_len;
 	while (tmp--)
 	{
-		do_push(a, b, stack);
-		ft_printf("p%c\n", stack);
+		rot_value_to_top(b, find_minmax(b, 1), 'b');
+//		print_stacks(a, b);
+		do_push(a, b, 'a');
+		ft_printf("pa\n");
 		ops++;
 	}
-	print_stacks(a, b);
-//	tmp = top_half_len - 1 ? top_half_len - 1 :
-//		  ft_lstlen(stack == 'a' ? a : b);
-	tmp = top_half_len - 1;
-
+	tmp = top_half_len - 1 ? top_half_len - 1 : ft_lstlen(a);
+//	print_stacks(a, b);
 	quick_sort(a, b, tmp, stack);
+	quick_sort(a, b, n - top_half_len, stack);
 }
 
 void 			sort_stacks(int *nums, unsigned arg_am)
@@ -393,21 +353,31 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 
 	int med_value = find_medvalue(&a, ft_lstlen(&a));
 	int med_i = get_index_for_value(&a, med_value);
-	partition(&a, &b, med_i, 'a');
 
-	print_stacks(&a, &b);
+	partition(&a, &b, med_i, 'a');
+//	print_stacks(&a, &b);
+	rot_value_to_top(&a, find_minmax(&a, 1), 'a');
+	do_rot(&a);
+	ft_printf("ra\n");
+//	print_stacks(&a, &b);
 	quick_sort(&a, &b, ft_lstlen(&a), 'a');
-//	quick_sort(&a, &b, ft_lstlen(&a), 'a');
+	print_stacks(&a, &b);
+
+
+//	med_value = find_medvalue(&b, ft_lstlen(&b));
+//	med_i = get_index_for_value(&b, med_value);
+//
+//	quick_sort(&a, &b, ft_lstlen(&b), 'b');
+//	print_stacks(&a, &b);
 
 	while (rot_value_to_top(&b, find_minmax(&b, 1), 'b'))
 	{
-		print_stacks(&a, &b);
 		do_push(&a, &b, 'a');
 		ft_printf("pa\n");
 		ops++;
 	}
-	print_stacks(&a, &b);
-	ft_printf("\n[%d]\n", ops);
+//	print_stacks(&a, &b);
+//	ft_printf("\n[%d]\n", ops);
 	free_stacks(&a, &b);
 }
 

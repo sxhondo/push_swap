@@ -23,9 +23,11 @@ static int 		check_atoi(const char *str)
 	sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 		sign = str[i++] == '-' ? -1 : 1;
+	if (!str[i])
+		put_error(1);
 	while (str[i])
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (str[i] < '0' || str[i] > '9' || !str[i])
 			put_error(1);
 		res = res * 10 + (str[i++] - '0');
 		if ((sign == 1 && res > INT32_MAX)
