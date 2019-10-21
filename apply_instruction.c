@@ -14,31 +14,34 @@
 
 void					print_hor(t_list **a, t_list **b)
 {
-	t_list				*pa = *a;
-	t_list				*pb = *b;
+	t_list				*p_a;
+	t_list				*p_b;
 
-	for (; pa; pa = pa->next)
-		ft_printf("%d\t", *((int*)pa->content));
-	ft_printf("\n");
-	for (; pb; pb = pb->next)
-		ft_printf("%d\t", *((int*)pb->content));
-	ft_printf("\n");
+	p_a = a ? *a : NULL;
+	p_b = b ? *b : NULL;
+
+	ft_printf("A: ");
+	while (p_a)
+	{
+		ft_printf("%3d ", *((int*)p_a->content));
+		p_a = p_a->next;
+	}
+	ft_printf("\nB: ");
+	while (p_b)
+	{
+		ft_printf("%3d ", *((int*)p_b->content));
+		p_b = p_b->next;
+	}
+	ft_printf("\n\n");
 }
 
-void					print_stacks(t_list **a, t_list **b)
+void					print_ver(t_list **a, t_list **b)
 {
 	t_list				*p_a;
 	t_list				*p_b;
 
-	if (a)
-		p_a = *a;
-	else
-		p_a = NULL;
-	if (b)
-		p_b = *b;
-	else
-		p_b = NULL;
-
+	p_a = a ? *a : NULL;
+	p_b = b ? *b : NULL;
 	ft_printf("\na\tb\n---------\n");
 	while (p_a || p_b)
 	{
