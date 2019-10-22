@@ -174,7 +174,7 @@
 //}
 //
 //void			smart_rot(t_list **a, t_list **b,
-//			int min_a_i, int min_b_i)
+//						  int min_a_i, int min_b_i)
 //{
 //
 //	int 		len_a = ft_lstlen(a);
@@ -208,16 +208,16 @@
 //	}
 //	if (min_a_i > 0 && min_a_i <= medi_a)
 //		while (min_a_i > 0)
-//			{do_rot(a), ft_printf("ra\n"); min_a_i--; ops++; }
+//		{do_rot(a), ft_printf("ra\n"); min_a_i--; ops++; }
 //	else if (min_a_i > medi_a)
 //		while (min_a_i < len_b)
-//			{do_rev_rot(a), ft_printf("rra\n"); min_a_i++; ops++; }
+//		{do_rev_rot(a), ft_printf("rra\n"); min_a_i++; ops++; }
 //	if (min_b_i > 0 && min_b_i <= medi_b)
 //		while (min_b_i > 0)
-//			{do_rot(b), ft_printf("rb\n"); min_b_i--; ops++; }
+//		{do_rot(b), ft_printf("rb\n"); min_b_i--; ops++; }
 //	else if (min_b_i > medi_b)
 //		while (min_b_i < len_b)
-//			{do_rev_rot(b), ft_printf("rrb\n"); min_b_i++; ops++; }
+//		{do_rev_rot(b), ft_printf("rrb\n"); min_b_i++; ops++; }
 //
 //
 //}
@@ -312,19 +312,45 @@
 //	}
 //}
 //
-//int				quick_sort(t_list **a, t_list **b,
-//							   int n, char stack)
+//int 			count_sorted_part(t_list **stack, char dst)
+//{
+//	int 		i;
+//	t_list		*p;
+//
+//	i = 0;
+//	p = *stack;
+//	if (dst == 'a')
+//	{
+//		while (p)
+//		{
+//			if (p->next && *((int *)p->content) < *((int *)(p->next->content)))
+//				i++;
+//			else
+//				break;
+//			p = p->next;
+//		}
+//	}
+//	if (dst == 'b')
+//	{
+//		while (p)
+//		{
+//			if (p->next && *((int *)p->content) > *((int *)(p->next->content)))
+//				i++;
+//			else
+//				break;
+//			p = p->next;
+//		}
+//	}
+//	return (i);
+//}
+//
+//int				pre_sort(t_list **a, t_list **b,
+//							int n, char stack)
 //{
 //	int k_val;
 //	int tmp;
 //	int i_a, i_b;
 //
-//	if (n <= 3)
-//	{
-//		if (n == 3 || n == 2)
-//			small_sort(stack == 'a' ? a : b, n, stack);
-//		return (0);
-//	}
 //	if ((stack == 'a' && is_sorted(a, 0))
 //		|| (stack == 'b' && is_sorted(b, 1)))
 //		return (0);
@@ -349,21 +375,87 @@
 //			ft_printf("pa\n");
 //		}
 //	}
-//	print_hor(a, b);
 //	tmp = get_index_for_value(stack == 'a' ? a : b, k_val);
 //	rot_index_on_top(stack == 'a' ? a : b, tmp, stack);
 //	do_push(a, b, stack == 'a' ? 'b' : 'a');
-////	print_hor(a, b);
-//	quick_sort(a, b, ft_lstlen(a), 'a');
-//	quick_sort(a, b, ft_lstlen(b), 'b');
-//	return (-1);
-//
 //}
+//
+//int 			part(t_list **a, t_list **b, int k_val_a, char dst)
+//{
+//	int 		i = 0;
+//	int 		i_a;
+//	int 		tmp;
+//
+//	tmp = 0;
+//	if (dst == 'a')
+//	{
+//		while ((i_a = find_less(a, k_val_a)) != -1)
+//		{
+//			rot_index_on_top(a, i_a, 'a');
+//			do_push(a, b, 'b');
+//			ft_printf("pb\n");
+//			print_hor(a, b);
+//			i++;
+//		}
+//		tmp = get_index_for_value(a, k_val_a);
+//		rot_index_on_top(a, tmp, 'a');
+//	}
+//	if (dst == 'b')
+//	{
+//		while ((i_a = find_greater(b, k_val_a)) != -1)
+//		{
+//			rot_index_on_top(b, i_a, 'b');
+//			do_push(a, b, 'a');
+//			ft_printf("pa\n");
+//			print_hor(a, b);
+//			i++;
+//		}
+//		tmp = get_index_for_value(b, k_val_a);
+//		rot_index_on_top(b, tmp, 'b');
+//	}
+//	return (i);
+//}
+//
+//void			parallel_sort(t_list **a, t_list **b,
+//							  int n, char dst)
+//{
+//	t_list		*p;
+//	int 		k_val_a;
+//	int 		k_val_b;
+//	int 		i, j, k;
+//
+//	if (dst == 'a' && is_sorted(a, 0))
+//		return;
+//	if (dst == 'b' && is_sorted(b, 1))
+//		return;
+//	if (n == 1 || n == 0)
+//		return;
+//	k_val_a = get_value_for_index(dst == 'a' ? a : b, n / 2);
+////	k_val_b = get_value_for_index(dst == 'a' ? a : b, n / 2);
+//	i = part(a, b, k_val_a, dst);
+//	j = i;
+//	while (i)
+//	{
+//		do_push(a, b, dst);
+//		i--;
+//	}
+//	parallel_sort(a, b, j, dst);
+//	i = count_sorted_part(dst == 'a' ? a : b, dst);
+//	j = i;
+//	while (i)
+//	{
+//		do_rot(dst == 'a' ? a : b);
+//		i--;
+//	}
+//	parallel_sort(a, b, ft_lstlen(dst == 'a' ? a : b) - j, dst);
+//}
+//
 //void 			sort_stacks(int *nums, unsigned arg_am)
 //{
 //	t_list		*a;
 //	t_list		*b;
 //	int 		tmp;
+//	int 		tm;
 //
 //	ops = 0;
 //	b = NULL;
@@ -388,14 +480,15 @@
 //			ft_printf("pb\n");
 //		}
 //	}
-//	quick_sort(&a, &b, ft_lstlen(&a), 'a');
-//	tmp = ft_lstlen(&b);
-//	if (b)
-//		while (tmp--)
-//		{
-//			do_push(&a, &b, 'a');
-//			ft_printf("pa\n");
-//		}
-//	print_hor(&a, &b);
-//}
+//	pre_sort(&a, &b, ft_lstlen(&a), 'a');
 //
+//	parallel_sort(&a, &b, ft_lstlen(&a), 'a');
+//	do_rot(&a);
+//	parallel_sort(&a, &b, ft_lstlen(&b), 'b');
+//	do_rot(&b);
+//
+//	tmp = ft_lstlen(&b);
+//	while (tmp--)
+//		do_push(&a, &b, 'a');
+////	print_hor(&a, &b);
+//}

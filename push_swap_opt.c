@@ -312,77 +312,30 @@ void				small_sort(t_list **stack, int n, char dst)
 	}
 }
 
-
-int 			part(t_list **a, t_list **b, int k_val_a)
+void			bubble_sort(t_list **a, t_list **b)
 {
-	int 		i = 0;
-	int 		i_a;
-	int 		tmp;
 
-	tmp = 0;
-	while ((i_a = find_greater(a, k_val_a)) != -1)
+	while ()
 	{
-		rot_index_on_top(a, i_a, 'a');
-		do_push(a, b, 'b');
-		ft_printf("pb\n");
-		print_hor(a, b);
-		i++;
+		if (*((int *)(*a)->content) < (*(int *)(*b)->content))
+
 	}
-	tmp = get_index_for_value(a, k_val_a);
-	rot_index_on_top(a, tmp, 'a');
-	return (i);
+	exit (0);
 }
 
-void			parallel_sort(t_list **a, t_list **b,
-		int n)
-{
-	t_list		*p;
-	int 		k_val_a;
-	int 		i, j, k;
-
-
-	if (n == 1 || n == 0 || is_sorted(a, 1))
-		return;
-	k_val_a = get_value_for_index(a, n / 2);
-	i = part(a, b, k_val_a);
-	j = i;
-	while (i--)
-		do_push(a, b, 'a');
-	print_hor(a, b);
-	parallel_sort(a, b, j);
-
-
-	if (is_sorted(a, 1))
-		return;
-
-	/* count sorted part */
-	p = *a;
-	while (p)
-	{
-		if (*((int *)p->content) > *((int *)(p->next->content)))
-			i++;
-		else
-			break;
-		p = p->next;
-	}
-	/* *** */
-	j = i + 1;
-	while (i--)
-		do_rot(a);
-	do_rot(a);
-	print_hor(a, b);
-
-	parallel_sort(a, b, ft_lstlen(a) - j);
-	print_hor(a, b);
-}
-
-int				pre_sort(t_list **a, t_list **b,
+int				quick_sort(t_list **a, t_list **b,
 							  int n, char stack)
 {
 	int k_val;
 	int tmp;
 	int i_a, i_b;
 
+	if (n <= 3)
+	{
+		if (n == 3 || n == 2)
+			small_sort(stack == 'a' ? a : b, n, stack);
+		return (0);
+	}
 	if ((stack == 'a' && is_sorted(a, 0))
 		|| (stack == 'b' && is_sorted(b, 1)))
 		return (0);
@@ -407,16 +360,19 @@ int				pre_sort(t_list **a, t_list **b,
 			ft_printf("pa\n");
 		}
 	}
+	print_hor(a, b);
 	tmp = get_index_for_value(stack == 'a' ? a : b, k_val);
 	rot_index_on_top(stack == 'a' ? a : b, tmp, stack);
 	do_push(a, b, stack == 'a' ? 'b' : 'a');
+	bubble_sort(a, b);
+	return (-1);
+
 }
 void 			sort_stacks(int *nums, unsigned arg_am)
 {
 	t_list		*a;
 	t_list		*b;
 	int 		tmp;
-	int 		tm;
 
 	ops = 0;
 	b = NULL;
@@ -441,9 +397,14 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 			ft_printf("pb\n");
 		}
 	}
-	pre_sort(&a, &b, ft_lstlen(&a), 'a');
-	parallel_sort(&a, &b, ft_lstlen(&a));
-	parallel_sort(&b, &a, ft_lstlen(&b));
-	print_ver(&a, &b);
+	quick_sort(&a, &b, ft_lstlen(&a), 'a');
+	tmp = ft_lstlen(&b);
+	if (b)
+		while (tmp--)
+		{
+			do_push(&a, &b, 'a');
+			ft_printf("pa\n");
+		}
+	print_hor(&a, &b);
 }
 
