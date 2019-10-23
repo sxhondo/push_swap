@@ -21,6 +21,7 @@ static int 		check_atoi(const char *str)
 	i = 0;
 	res = 0;
 	sign = 1;
+
 	if (str[i] == '-' || str[i] == '+')
 		sign = str[i++] == '-' ? -1 : 1;
 	if (!str[i])
@@ -66,12 +67,12 @@ int				*validate_arguments(int argc, char **argv)
 
 	i = 1;
 	j = 0;
+
 	if (argc < 1)
 		put_error(1);
 	while (argv[i])
-	{
 		tab[j++] = check_atoi(argv[i++]);
-	}
+
 	if (!(find_duplicates(tab, argc)))
 		put_error(3);
 	t = (int *)malloc(sizeof(int) * j);
