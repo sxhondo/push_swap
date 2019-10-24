@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-int 				ops;
-
 int 			find_medvalue(t_list **stack, int llen)
 {
 	int 		j;
@@ -195,7 +193,6 @@ void			smart_rot(t_list **a, t_list **b,
 			do_rot(a);
 			do_rot(b);
 			ft_printf("rr\n");
-			ops++;
 		}
 	}
 	if (min_a_i > medi_a && min_b_i > medi_b)
@@ -207,115 +204,26 @@ void			smart_rot(t_list **a, t_list **b,
 			do_rev_rot(a);
 			do_rev_rot(b);
 			ft_printf("rrr\n");
-			ops++;
 		}
 	}
 	if (min_a_i > 0 && min_a_i <= medi_a)
 		while (min_a_i > 0)
-		{do_rot(a), ft_printf("ra\n"); min_a_i--; ops++; }
+		{do_rot(a), ft_printf("ra\n"); min_a_i--;}
 	else if (min_a_i > medi_a)
 		while (min_a_i < len_b)
-		{do_rev_rot(a), ft_printf("rra\n"); min_a_i++; ops++; }
+		{do_rev_rot(a), ft_printf("rra\n"); min_a_i++;}
 	if (min_b_i > 0 && min_b_i <= medi_b)
 		while (min_b_i > 0)
-		{do_rot(b), ft_printf("rb\n"); min_b_i--; ops++; }
+		{do_rot(b), ft_printf("rb\n"); min_b_i--;}
 	else if (min_b_i > medi_b)
 		while (min_b_i < len_b)
-		{do_rev_rot(b), ft_printf("rrb\n"); min_b_i++; ops++; }
+		{do_rev_rot(b), ft_printf("rrb\n"); min_b_i++;}
 
 
-}
-
-void				small_sort(t_list **stack, int n, char dst)
-{
-	t_list *tmp;
-	int a;
-	int b;
-	int c;
-
-	if (n == 3)
-	{
-		if (dst == 'a')
-			while (!is_sorted(stack, 0))
-			{
-				a = *((int *) (*stack)->content);
-				b = *((int *) (*stack)->next->content);
-				c = *((int *) (*stack)->next->next->content);
-				if (a > b && a > c && b < c) /* 3 1 2 */
-				{
-					do_rot(stack);
-					ft_printf("r%c\n", dst);
-				}
-				if (a > b && a > c && b > c)
-				{
-					do_swap(stack);
-					do_rev_rot(stack);
-					ft_printf("s%c\nrr%c\n", dst, dst);
-				}
-				if (a > b && a < c && b < c)
-				{
-					do_swap(stack);
-					ft_printf("s%c\n", dst);
-				}
-				if (a < b && a > c && b > c)
-				{
-					do_rev_rot(stack);
-					ft_printf("rr%c\n", dst);
-				}
-				if (a < b && a < c && b > c)
-				{
-					do_swap(stack);
-					do_rot(stack);
-					ft_printf("s%c\nr%c\n", dst, dst);
-				}
-			}
-		if (dst == 'b')
-			while (!is_sorted(stack, 1))
-			{
-				a = *((int *) (*stack)->content);
-				b = *((int *) (*stack)->next->content);
-				c = *((int *) (*stack)->next->next->content);
-
-				if (a < b && a < c && b > c)
-				{
-					do_rot(stack);
-					ft_printf("r%c\n", dst);
-				}
-				if (a < b && a < c && b < c)
-				{
-					do_rot(stack);
-					do_swap(stack);
-					ft_printf("r%c\ns%c\n", dst, dst);
-				}
-				if (a > b && a < c && b < c)
-				{
-					do_rev_rot(stack);
-					ft_printf("rr%c\n", dst);
-				}
-				if (a < b && a > c && b > c)
-				{
-					do_swap(stack);
-					ft_printf("s%c\n", dst);
-				}
-				if (a > b && a > c && b < c)
-				{
-					do_rev_rot(stack);
-					do_swap(stack);
-					ft_printf("rr%c\ns%c\n", dst, dst);
-				}
-			}
-	}
-	if (n == 2)
-	{
-		a = *((int *)(*stack)->content);
-		b = *((int *)(*stack)->next->content);
-		a > b ? do_swap(stack) : NULL;
-		ft_printf("s%c\n", dst);
-	}
 }
 
 int				parallel_pre_sort(t_list **a, t_list **b,
-							  int n, char stack)
+									 int n, char stack)
 {
 	int k_val;
 	int tmp;
@@ -342,15 +250,11 @@ int				parallel_pre_sort(t_list **a, t_list **b,
 			ft_printf("pa\n");
 		}
 	}
-//	tmp = get_index_for_value(stack == 'a' ? a : b, k_val);
-//	rot_index_on_top(stack == 'a' ? a : b, tmp, stack);
-//	do_push(a, b, stack == 'a' ? 'b' : 'a');
-//	ft_printf("p%c\n", stack == 'a' ? 'b' : 'a');
 	return (-1);
 }
 
 int			search_and_replace(t_list **a, t_list **b,
-		int k_val, int llen, char stack)
+								  int k_val, int llen, char stack)
 {
 	int 		tmp;
 	int 		i;
@@ -364,7 +268,8 @@ int			search_and_replace(t_list **a, t_list **b,
 		if (stack == 'a')
 			index = find_less(a, k_val);
 		else
-			index = find_greater(b, k_val);
+			index = find_less(b, k_val);
+//			index = find_greater(b, k_val);
 		if (index < 0)
 			break;
 		if (stack == 'a')
@@ -399,8 +304,8 @@ void			mini_quick_sort(t_list **a, t_list **b)
 	w = ft_lstlen(b);
 	while (q && w)
 	{
-		k_val_a = find_medvalue(a, q);
-		k_val_b = find_medvalue(b, w);
+		k_val_a = q > 0 ? find_medvalue(a, q) : get_value_for_index(a, q / 2);
+		k_val_b = w > 0 ? find_medvalue(b, w) : get_value_for_index(a, q / 2);
 		search_and_replace(a, b, k_val_a, q, 'a'); //ft_lstlen(a,b)
 		search_and_replace(a, b, k_val_b, w, 'b');
 		q /= 2;
@@ -408,36 +313,32 @@ void			mini_quick_sort(t_list **a, t_list **b)
 	}
 }
 
-void			insertion_sort(t_list **a, t_list **b, int n, int mode)
+int				insertion_a(t_list **a, t_list **b)
+{
+	int 		llen = ft_lstlen(a);
+	int 		i, k;
+
+	k = llen;
+	while (llen--)
+	{
+		i = get_index_for_value(a, find_minmax(a, 1));
+		rot_index_on_top(a, i, 'a');
+		do_push(a, b, 'b');
+	}
+	return (k);
+}
+
+void			insertion_b(t_list **a, t_list **b)
 {
 	int 		i;
-	int 		j;
+	int 		llen = ft_lstlen(b);
 
-	if (is_sorted(a, 1) && is_sorted(b, 1))
-		return;
-	j = n;
-	while (j--)
+	while (llen--)
 	{
-		i = get_index_for_value(b, find_minmax(b, mode));
+		i = get_index_for_value(b, find_minmax(b, 1));
 		rot_index_on_top(b, i, 'b');
 		do_push(a, b, 'a');
-		ft_printf("pa\n");
-		if (mode == 0)
-		{
-			do_rot(a);
-			ft_printf("ra\n");
-		}
 	}
-	if (is_sorted(a, 0))
-		return;
-	i = ft_lstlen(a) - n;
-	while (i--)
-	{
-		do_rev_rot(a);
-		do_push(a, b, 'b');
-		ft_printf("ra\npb\n");
-	}
-	insertion_sort(a, b, ft_lstlen(b), 0);
 }
 
 void			sort_small_stack(t_list **a, t_list **b)
@@ -469,7 +370,6 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 	t_list		*b;
 	int 		tmp;
 
-	ops = 0;
 	b = NULL;
 	a = fill_a(nums, arg_am);
 
@@ -489,9 +389,9 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 	}
 	parallel_pre_sort(&a, &b, ft_lstlen(&a), 'a');
 	mini_quick_sort(&a, &b);
-//	print_hor(&a, &b);
-	insertion_sort(&a, &b, ft_lstlen(&b), 1);
-//	print_ver(&a, &b);
+	tmp = insertion_a(&a, &b);
+	while (tmp--)
+		do_rot(&b);
+	insertion_b(&a, &b);
 
 }
-
