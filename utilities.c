@@ -12,6 +12,24 @@
 
 #include "push_swap.h"
 
+int 	count_numbers(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str)
+	{
+		if (ft_isdigit(*str))
+			i++;
+		else
+			put_error(1);
+		while (*str && *str++ != ' ')
+			;
+
+	}
+	return (i);
+}
+
 char			is_push(char ch)
 {
 	return ((char)(ch == 'a' ? 'a' : ch == 'b' ? 'b' : 0));

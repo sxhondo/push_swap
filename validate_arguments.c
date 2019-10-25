@@ -22,18 +22,24 @@ static int 		check_atoi(const char *str)
 	res = 0;
 	sign = 1;
 
+	if (!ft_isdigit(*str))
+	{
+		put_error(1);
+	}
+
 	if (str[i] == '-' || str[i] == '+')
 		sign = str[i++] == '-' ? -1 : 1;
 	if (!str[i])
 		put_error(1);
-	while (str[i])
+	while (str[i] && ft_isdigit(str[i]))
 	{
 		if (str[i] < '0' || str[i] > '9' || !str[i])
 			put_error(1);
-		res = res * 10 + (str[i++] - '0');
+		res = res * 10 + (str[i] - '0');
 		if ((sign == 1 && res > INT32_MAX)
 			|| (sign == -1 && res - 2 >= INT32_MAX))
 			put_error(1);
+		i++;
 	}
 	return ((int)(res * sign));
 }
@@ -65,15 +71,33 @@ int				*validate_arguments(int argc, char **argv)
 	int 		tab[argc];
 	int			*t;
 
-	i = 1;
-	j = 0;
-
 	if (argc < 1)
 		put_error(1);
-	while (argv[i])
-		tab[j++] = check_atoi(argv[i++]);
 
-	if (!(find_duplicates(tab, argc)))
+	j = 0;
+	if (argc == 1)
+	{
+		while (argv[1])
+		{
+			tab[j++] = check_atoi(argv[1]);
+			while (ft_isdigit(*argv[1]))
+				argv[1]++;
+			if (!*argv[1])
+				break;
+			if (*argv[1]++ != ' ')
+				put_error(1);
+		}
+	}
+	else
+	{
+		i = 1;
+		while (argv[i])
+		{
+			tab[j] = check_atoi(argv[i++]);
+			j++;
+		}
+	}
+	if (!(find_duplicates(tab, j)))
 		put_error(3);
 	t = (int *)malloc(sizeof(int) * j);
 	i = 0;

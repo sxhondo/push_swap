@@ -315,8 +315,8 @@ void			mini_quick_sort(t_list **a, t_list **b)
 
 int				insertion_a(t_list **a, t_list **b)
 {
-	int 		i, k;
 	int 		llen = ft_lstlen(a);
+	int 		i, k;
 
 	k = llen;
 	while (llen--)
@@ -324,24 +324,21 @@ int				insertion_a(t_list **a, t_list **b)
 		i = get_index_for_value(a, find_minmax(a, 1));
 		rot_index_on_top(a, i, 'a');
 		do_push(a, b, 'b');
-		ft_printf("pb\n");
 	}
 	return (k);
 }
 
-int				insertion_b(t_list **a, t_list **b)
+void			insertion_b(t_list **a, t_list **b)
 {
-	int 		i, k;
+	int 		i;
 	int 		llen = ft_lstlen(b);
 
-	k = llen;
 	while (llen--)
 	{
 		i = get_index_for_value(b, find_minmax(b, 1));
 		rot_index_on_top(b, i, 'b');
 		do_push(a, b, 'a');
 	}
-	return (k);
 }
 
 void			sort_small_stack(t_list **a, t_list **b)
@@ -372,11 +369,10 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 	t_list		*a;
 	t_list		*b;
 	int 		tmp;
-	int 		llen;
 
 	b = NULL;
 	a = fill_a(nums, arg_am);
-	print_hor(&a, &b);
+
 	if ((tmp = ft_lstlen(&a)) > 6)
 	{
 		tmp /= 2;
@@ -395,9 +391,7 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 	mini_quick_sort(&a, &b);
 	tmp = insertion_a(&a, &b);
 	while (tmp--)
-	{
 		do_rot(&b);
-		ft_printf("%rb\n");
-	}
 	insertion_b(&a, &b);
+
 }

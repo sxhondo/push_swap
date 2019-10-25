@@ -66,9 +66,10 @@ t_list			*read_instructions()
 	t_list		*instr;
 
 	instr = NULL;
-	while((bytes = read(0, buf, 5)))
+	while((bytes = read(0, buf, 10)))
 	{
 		buf[bytes] = '\0';
+		ft_printf("Q: %s\n", buf);
 		if (bytes <= 2 || bytes > 4 || !(ops = parse_instruction(buf, bytes)))
 		{
 			put_error(4);

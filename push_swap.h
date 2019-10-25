@@ -63,4 +63,5 @@ char				is_swap(char ch);
 char				is_rotate(char ch);
 void				free_ins(t_list **ins);
 void				put_error(int type);
+int 				count_numbers(char *str);
 #endif
