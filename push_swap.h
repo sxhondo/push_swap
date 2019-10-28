@@ -34,6 +34,19 @@ typedef struct		s_op
 
 void 				sort_stacks(int *nums, unsigned arg_am);
 
+/*
+** push_swap utilites
+ */
+int 				find_medvalue(t_list **stack, int llen);
+int 				find_less(t_list **stack, int min);
+void			smart_rot(t_list **a, t_list **b,
+						  int min_a_i, int min_b_i);
+void				small_sort(t_list **stack, int n, char dst);
+void				sort_two(t_list **stack, char c);
+int 				is_sorted(t_list **stack, int mode);
+int					rot_index_on_top(t_list **stack, int index, char dst);
+int 				find_minmax(t_list **stack, int mode);
+int 				find_greater(t_list **stack, int val);
 
 t_list				*fill_a(int *nums, unsigned arg_am);
 void				print_ver(t_list **a, t_list **b);

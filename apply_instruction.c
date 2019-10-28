@@ -139,18 +139,18 @@ static void				apply_instruction(int *nums, t_list *ins, unsigned arg_am)
 	free_stacks(&a, &b);
 }
 
-int 			main(int argc, char **argv)
-{
-	int 		i;
-	int 		*nums;
-	t_list		*ins;
-
-	i = argc > 2 ? argc - 1 : count_numbers(argv[1]);
-	nums = validate_arguments(argc - 1, argv);
-	if (!(ins = read_instructions()))
-		return (0);
-	apply_instruction(nums, ins, i);
-
-	free (nums);
-	free_ins(&ins);
-}
+//int 			main(int argc, char **argv)
+//{
+//	int 		i;
+//	int 		*nums;
+//	t_list		*ins;
+//
+//	i = argc > 2 ? argc - 1 : count_numbers(argv[1]);
+//	nums = validate_arguments(argc - 1, argv);
+//	if (!(ins = read_instructions()))
+//		return (0);
+//	apply_instruction(nums, ins, i);
+//
+//	free (nums);
+//	free_ins(&ins);
+//}

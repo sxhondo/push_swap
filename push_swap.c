@@ -1,227 +1,5 @@
 #include "push_swap.h"
 
-int 			find_medvalue(t_list **stack, int llen)
-{
-	int 		j;
-	int 		i;
-	int 		res;
-	t_list		*tmp;
-
-	j = llen;
-	res = 0;
-	tmp = *stack;
-	while (tmp && j--)
-	{
-		res += *((int *)tmp->content);
-		tmp = tmp->next;
-	}
-
-	res /= llen;
-	i = 0;
-	while (res)
-	{
-		j = llen;
-		res += i;
-		tmp = *stack;
-		while (tmp && j--)
-		{
-			if (res == *((int *)tmp->content))
-				return (res);
-			tmp = tmp->next;
-		}
-		j = llen;
-		res -= i;
-		tmp = *stack;
-		while (tmp && j--)
-		{
-			if (res == *((int *)tmp->content))
-				return (res);
-			tmp = tmp->next;
-		}
-		i++;
-	}
-	return (-1);
-}
-
-int 			get_value_for_index(t_list **stack, int index)
-{
-	t_list		*tmp;
-
-	tmp = *stack;
-	while (index)
-	{
-		tmp = tmp->next;
-		index--;
-	}
-	return (*((int *)tmp->content));
-}
-
-int 			get_index_for_value(t_list **stack, int value)
-{
-	int 		i;
-	t_list		*tmp;
-
-	i = 0;
-	tmp = *stack;
-	while (tmp)
-	{
-		if (*((int *)tmp->content) == value)
-			return (i);
-		i++;
-		tmp = tmp->next;
-	}
-	return (-1);
-}
-
-int 			find_less(t_list **stack, int min)
-{
-	t_list		*tmp;
-	int 		i;
-
-	i = 0;
-	tmp = *stack;
-	while (tmp)
-	{
-		if (*((int *)tmp->content) < min)
-			return (i);
-		i++;
-		tmp = tmp->next;
-	}
-	return (-1);
-}
-
-int 			find_greater(t_list **stack, int min)
-{
-	t_list		*tmp;
-	int 		i;
-
-	i = 0;
-	tmp = *stack;
-	while (tmp)
-	{
-		if (*((int *)tmp->content) > min)
-			return (i);
-		i++;
-		tmp = tmp->next;
-	}
-	return (-1);
-}
-
-
-int 			is_sorted(t_list **stack, int mode) /* 0 - sorted, 1 - back sorted */
-{
-	t_list		*tmp;
-
-	tmp = *stack;
-	if (!tmp)
-		return (1);
-	while (tmp->next)
-	{
-		if (!mode && *((int *)tmp->content) < *((int *)tmp->next->content))
-			tmp = tmp->next;
-		else if (mode && *((int *)tmp->content) > *((int *)tmp->next->content))
-			tmp = tmp->next;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int 			find_minmax(t_list **stack, int mode)
-{
-	t_list		*i;
-	t_list		*j;
-	int 		curr;
-
-	i = *stack;
-	while (i)
-	{
-		curr = *((int *)i->content);
-		j = *stack;
-		while (!mode && j && *((int *)j->content) >= curr)
-			j = j->next;
-		while (mode && j && *((int *)j->content) <= curr)
-			j = j->next;
-		if (!j)
-			return (curr);
-		i = i->next;
-	}
-	return (-1);
-}
-
-int					rot_index_on_top(t_list **stack, int index, char dst)
-{
-	int 		llen;
-
-	llen = ft_lstlen(stack);
-	if (index < 0)
-		return (0);
-	if (index <= llen / 2)
-	{
-		while (index-- > 0)
-		{
-			do_rot(stack);
-			ft_printf("r%c\n", dst);
-		}
-	}
-	else
-	{
-		while (index++ <= llen - 1)
-		{
-			do_rev_rot(stack);
-			ft_printf("rr%c\n", dst);
-		}
-	}
-	return (1);
-}
-
-void			smart_rot(t_list **a, t_list **b,
-						  int min_a_i, int min_b_i)
-{
-
-	int 		len_a = ft_lstlen(a);
-	int 		len_b = ft_lstlen(b);
-	int 		medi_a = len_a / 2; //50
-	int 		medi_b = len_b / 2; //50
-
-	if (min_a_i <= medi_a && min_b_i <= medi_b)
-	{
-		while (min_a_i > 0 && min_b_i > 0)
-		{
-			min_a_i--;
-			min_b_i--;
-			do_rot(a);
-			do_rot(b);
-			ft_printf("rr\n");
-		}
-	}
-	if (min_a_i > medi_a && min_b_i > medi_b)
-	{
-		while (min_a_i < len_a && min_b_i < len_a)
-		{
-			min_a_i++;
-			min_b_i++;
-			do_rev_rot(a);
-			do_rev_rot(b);
-			ft_printf("rrr\n");
-		}
-	}
-	if (min_a_i > 0 && min_a_i <= medi_a)
-		while (min_a_i > 0)
-		{do_rot(a), ft_printf("ra\n"); min_a_i--;}
-	else if (min_a_i > medi_a)
-		while (min_a_i < len_b)
-		{do_rev_rot(a), ft_printf("rra\n"); min_a_i++;}
-	if (min_b_i > 0 && min_b_i <= medi_b)
-		while (min_b_i > 0)
-		{do_rot(b), ft_printf("rb\n"); min_b_i--;}
-	else if (min_b_i > medi_b)
-		while (min_b_i < len_b)
-		{do_rev_rot(b), ft_printf("rrb\n"); min_b_i++;}
-
-
-}
-
 int				parallel_pre_sort(t_list **a, t_list **b,
 									 int n, char stack)
 {
@@ -253,151 +31,95 @@ int				parallel_pre_sort(t_list **a, t_list **b,
 	return (-1);
 }
 
-int			search_and_replace(t_list **a, t_list **b,
-								  int k_val, int llen, char stack)
+void			quick_sort(t_list **a, t_list **b, int med, t_list **tab)
 {
-	int 		tmp;
-	int 		i;
+	t_list		*s;
 	int 		j;
-	int 		index;
+	int 		i;
 
-	i = 0;
 	j = 0;
-	while (llen--)
+	if (ft_lstlen(b) == 3)
 	{
-		if (stack == 'a')
-			index = find_less(a, k_val);
-		else
-			index = find_less(b, k_val);
-//			index = find_greater(b, k_val);
-		if (index < 0)
-			break;
-		if (stack == 'a')
-			rot_index_on_top(a, index, 'a');
-		else
-			rot_index_on_top(b, index, 'b');
-		if (index > -1)
-		{
-			do_push(a, b, stack == 'a' ? 'b' : 'a');
-			ft_printf("p%c\n", stack == 'a' ? 'b' : 'a');
-		}
-		i++;
+		small_sort(b, 3, 'a');
+
+		return ;
 	}
-	tmp = get_index_for_value(stack == 'a' ? a : b, k_val);
-	rot_index_on_top(stack == 'a' ? a : b, tmp, stack);
-	j = i;
-	while (i--)
+	if (ft_lstlen(b) == 2)
+		return (sort_two(b, 'b'));
+	j = 0;
+	while ((i = find_greater(b, med)) >= 0)
 	{
-		do_push(a, b, stack);
-		ft_printf("p%c\n", stack == 'a' ? 'b' : 'a');
-	}
-	return (j);
-}
-
-void			mini_quick_sort(t_list **a, t_list **b)
-{
-	int 		k_val_a;
-	int 		k_val_b;
-	int 		q, w;
-
-	q = ft_lstlen(a);
-	w = ft_lstlen(b);
-	while (q && w)
-	{
-		k_val_a = q > 0 ? find_medvalue(a, q) : get_value_for_index(a, q / 2);
-		k_val_b = w > 0 ? find_medvalue(b, w) : get_value_for_index(a, q / 2);
-		search_and_replace(a, b, k_val_a, q, 'a'); //ft_lstlen(a,b)
-		search_and_replace(a, b, k_val_b, w, 'b');
-		q /= 2;
-		w /= 2;
-	}
-}
-
-int				insertion_a(t_list **a, t_list **b)
-{
-	int 		i, k;
-	int 		llen = ft_lstlen(a);
-
-	k = llen;
-	while (llen--)
-	{
-		i = get_index_for_value(a, find_minmax(a, 1));
-		rot_index_on_top(a, i, 'a');
-		do_push(a, b, 'b');
-		ft_printf("pb\n");
-	}
-	return (k);
-}
-
-int				insertion_b(t_list **a, t_list **b)
-{
-	int 		i, k;
-	int 		llen = ft_lstlen(b);
-
-	k = llen;
-	while (llen--)
-	{
-		i = get_index_for_value(b, find_minmax(b, 1));
 		rot_index_on_top(b, i, 'b');
 		do_push(a, b, 'a');
+		ft_printf("pb\n");
+		j++;
 	}
-	return (k);
+	if (!(s = ft_lstnew(&j, j)))
+		return;
+	ft_lstadd(tab, s);
+	quick_sort(a, b, find_medvalue(b, ft_lstlen(b)), tab);
 }
 
-void			sort_small_stack(t_list **a, t_list **b)
+void			push_larger_half(t_list **a, t_list **b)
 {
-	int 		i;
-	int 		tmp;
+	int 		min;
 
-	i = 0;
-	while (!(is_sorted(a, 0)))
+	min = find_minmax(a, 0);
+	int head = *((int *)(*a)->content);
+	while (head != min)
 	{
-		tmp = get_index_for_value(a, find_minmax(a, 0));
-		rot_index_on_top(a, tmp, 'a');
 		do_push(a, b, 'b');
-		ft_printf("pb\n");
-		i++;
+		head = *((int *)(*a)->content);
 	}
-	while (i--)
+}
+
+void			back_track(t_list **a, t_list **b)
+{
+	int 	i;
+	int 	j;
+	int 	med;
+	t_list	*next;
+	t_list	*tab = NULL;
+
+	while (1)
 	{
-		tmp = get_index_for_value(b, find_minmax(b, 1));
-		rot_index_on_top(b, tmp, 'b');
-		do_push(a, b, 'a');
-		ft_printf("pa\n");
+		med = find_medvalue(b, ft_lstlen(b));
+		if (med == -1)
+			return;
+		quick_sort(a, b, med, &tab);
+		i = ft_lstlen(b);
+		while (i--)
+		{
+			do_push(a, b, 'a');
+			do_rot(a);
+		}
+		if (!tab)
+			break;
+//		for (p = tab; p; p = p->next)
+//			ft_printf("{Bred} %10d {eoc}\n", *((int *) p->content));
+		j = *((int *) (*tab).content);
+		next = (*tab).next;
+		free(tab);
+		tab = next;
+		while (j--)
+			do_push(a, b, 'b');
 	}
+
+	push_larger_half(a, b);
+	back_track(a, b);
 }
 
 void 			sort_stacks(int *nums, unsigned arg_am)
 {
 	t_list		*a;
 	t_list		*b;
-	int 		tmp;
-	int 		llen;
+	int 		i;
 
 	b = NULL;
 	a = fill_a(nums, arg_am);
-	print_hor(&a, &b);
-	if ((tmp = ft_lstlen(&a)) > 6)
-	{
-		tmp /= 2;
-		while (tmp--)
-		{
-			do_push(&a, &b, 'b');
-			ft_printf("pb\n");
-		}
-	}
-	else
-	{
-		sort_small_stack(&a, &b);
-		return;
-	}
 	parallel_pre_sort(&a, &b, ft_lstlen(&a), 'a');
-	mini_quick_sort(&a, &b);
-	tmp = insertion_a(&a, &b);
-	while (tmp--)
-	{
-		do_rot(&b);
-		ft_printf("%rb\n");
-	}
-	insertion_b(&a, &b);
+	back_track(&a, &b);
+	print_hor(&a, &b);
+	free_ins(&a);
+
 }

@@ -29,6 +29,7 @@ CH_SRCS=\
 
 PS_SRCS=\
 	push_swap.c\
+	push_swap_utilities.c\
 	instructions.c\
 	validate_arguments.c\
 	apply_instruction.c\
