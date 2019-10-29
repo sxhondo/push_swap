@@ -12,22 +12,23 @@
 
 #include "push_swap.h"
 
-int 	count_numbers(char *str)
+int 			count_nums(char *str)
 {
-	int i;
+	int 		i;
+	int 		q;
 
 	i = 0;
-	while (*str)
+	q = 0;
+	while (str[i])
 	{
-		if (ft_isdigit(*str))
+		if (ft_isdigit(str[i]))
+			q++;
+		while (str[i] && ft_isdigit(str[i]))
 			i++;
-		else
-			put_error(1);
-		while (*str && *str++ != ' ')
-			;
-
+		while (str[i] && !ft_isdigit(str[i]))
+			i++;
 	}
-	return (i);
+	return (q);
 }
 
 char			is_push(char ch)
@@ -60,8 +61,10 @@ void			free_ins(t_list **ins)
 	}
 }
 
-void			put_error(int type)
+void			put_error(int type, t_list **stack)
 {
+	if (type == 3)
+		free_ins(stack);
 	write(2, "Error", 5);
 	exit (type);
 }

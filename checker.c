@@ -50,7 +50,7 @@ static t_op		*parse_instruction(char *buf, int bytes)
 	get_instruction(buf, ops, bytes);
 	if (!ops->stack || !ops->operation)
 	{
-		put_error(5);
+		put_error(5, NULL);
 		free(ops);
 		return (NULL);
 	}
@@ -72,7 +72,7 @@ t_list			*read_instructions()
 		ft_printf("Q: %s\n", buf);
 		if (bytes <= 2 || bytes > 4 || !(ops = parse_instruction(buf, bytes)))
 		{
-			put_error(4);
+			put_error(4, NULL);
 			free_ins(&instr);
 			return (NULL);
 		}

@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-
-
 void			do_swap(t_list **stack)
 {
 	t_list		*tmp;

@@ -12,54 +12,6 @@
 
 #include "push_swap.h"
 
-void					print_hor(t_list **a, t_list **b)
-{
-	t_list				*p_a;
-	t_list				*p_b;
-
-	p_a = a ? *a : NULL;
-	p_b = b ? *b : NULL;
-
-	ft_printf("A: ");
-	while (p_a)
-	{
-		ft_printf("%3d ", *((int*)p_a->content));
-		p_a = p_a->next;
-	}
-	ft_printf("\nB: ");
-	while (p_b)
-	{
-		ft_printf("%3d ", *((int*)p_b->content));
-		p_b = p_b->next;
-	}
-	ft_printf("\n\n");
-}
-
-void					print_ver(t_list **a, t_list **b)
-{
-	t_list				*p_a;
-	t_list				*p_b;
-
-	p_a = a ? *a : NULL;
-	p_b = b ? *b : NULL;
-	ft_printf("\na\tb\n---------\n");
-	while (p_a || p_b)
-	{
-		if (p_a)
-		{
-			ft_printf("%d", *((int *)p_a->content));
-			p_a = p_a->next;
-		}
-		ft_printf("\t");
-		if (p_b)
-		{
-			ft_printf("%d", *((int *)p_b->content));
-			p_b = p_b->next;
-		}
-		ft_printf("\n");
-	}
-}
-
 void					free_stacks(t_list **a, t_list **b)
 {
 	t_list				*curr;
@@ -85,25 +37,8 @@ void					free_stacks(t_list **a, t_list **b)
 	*b = NULL;
 }
 
-t_list					*fill_a(int *nums, unsigned arg_am)
-{
-	int 				i;
-	t_list				*node;
-	t_list				*res;
-
-	i = 0;
-	res = NULL;
-	while (i < arg_am)
-	{
-		if (!(node = ft_lstnew(&nums[i], sizeof(int))))
-			return (NULL);
-		ft_lstpushback(&res, node);
-		i++;
-	}
-	return (res);
-}
-
-static void				apply_instruction(int *nums, t_list *ins, unsigned arg_am)
+void					apply_instruction(int *nums, t_list *ins,
+															unsigned arg_am)
 {
 	t_list				*a;
 	t_list				*b;
@@ -138,19 +73,3 @@ static void				apply_instruction(int *nums, t_list *ins, unsigned arg_am)
 	ft_printf("%s\n", (b ? "KO": "OK"));
 	free_stacks(&a, &b);
 }
-
-//int 			main(int argc, char **argv)
-//{
-//	int 		i;
-//	int 		*nums;
-//	t_list		*ins;
-//
-//	i = argc > 2 ? argc - 1 : count_numbers(argv[1]);
-//	nums = validate_arguments(argc - 1, argv);
-//	if (!(ins = read_instructions()))
-//		return (0);
-//	apply_instruction(nums, ins, i);
-//
-//	free (nums);
-//	free_ins(&ins);
-//}

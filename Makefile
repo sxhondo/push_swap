@@ -21,21 +21,27 @@ LIB_DIR = libft
 LIB_INC = libft/incs
 
 CH_SRCS=\
-	validate_arguments.c\
 	apply_instruction.c\
-	checker.c\
 	instructions.c\
-	utilities.c
+	ps_utilities2.c\
+	graphical_utilities.c\
+	validation.c\
+	checker.c\
+	validation_utilities.c\
+	main_checker.c
+
 
 PS_SRCS=\
 	push_swap.c\
-	push_swap_utilities.c\
+	ps_utilities1.c\
+	ps_utilities2.c\
+	small_sort.c\
+	find_med_value.c\
 	instructions.c\
-	validate_arguments.c\
-	apply_instruction.c\
-	utilities.c\
-	checker.c\
-	main.c
+	validation_utilities.c\
+	validation.c\
+	graphical_utilities.c\
+	main_push_swap.c
 
 all: $(PS)
 
