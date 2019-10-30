@@ -14,8 +14,7 @@ CH = checker
 PS = push_swap
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
-CFLAGS = -g
+CFLAGS = -Wall -Wextra -Werror
 
 LIB_DIR = libft
 LIB_INC = libft/incs
@@ -29,6 +28,7 @@ CH_SRCS=\
 	graphical_utilities.c\
 	validation.c\
 	checker.c\
+	short_cuts.c\
 	validation_utilities.c\
 	main_checker.c
 
@@ -43,6 +43,7 @@ PS_SRCS=\
 	validation_utilities.c\
 	validation.c\
 	graphical_utilities.c\
+	short_cuts.c\
 	main_push_swap.c
 
 all: $(PS) $(CH)

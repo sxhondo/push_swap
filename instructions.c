@@ -17,13 +17,12 @@ void			do_swap(t_list **stack)
 	t_list		*tmp;
 
 	if (!*stack || ft_lstlen(stack) < 1)
-		return;
+		return ;
 	tmp = (*stack)->next;
 	(*stack)->next = (*stack)->next->next;
 	tmp->next = *stack;
 	*stack = tmp;
 }
-
 
 void			do_push(t_list **a, t_list **b, char in)
 {
@@ -55,7 +54,7 @@ void			do_rot(t_list **stack)
 	t_list		*next;
 
 	if (!*stack || ft_lstlen(stack) == 1)
-		return;
+		return ;
 	ptr = *stack;
 	next = ptr->next;
 	ptr->next = NULL;
@@ -72,7 +71,7 @@ void			do_rev_rot(t_list **stack)
 	t_list		*save;
 
 	if (!*stack || ft_lstlen(stack) == 1)
-		return;
+		return ;
 	ptr = *stack;
 	while (ptr->next->next)
 		ptr = ptr->next;

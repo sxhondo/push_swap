@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_push_swap.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/30 19:17:59 by sxhondo           #+#    #+#             */
+/*   Updated: 2019/10/30 19:18:00 by sxhondo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int 	main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	int 	i;
-	int 	*nums;
+	int			v;
+	int			i;
+	int			*nums;
 
+	v = 0;
 	if (ac == 2)
 	{
 		i = count_nums(av[1]);
@@ -13,6 +27,8 @@ int 	main(int ac, char **av)
 	else if (ac >= 3)
 	{
 		i = ac - 1;
+		if ((v = (int)parse_verbose(av[1])) && --i)
+			av++;
 		nums = validate_array(i, av);
 	}
 	else
@@ -20,6 +36,6 @@ int 	main(int ac, char **av)
 		ft_printf("usage: \n");
 		return (0);
 	}
-	sort_stacks(nums, i);
-	free (nums);
+	sort_stacks(nums, i, (int)v);
+	free(nums);
 }

@@ -12,10 +12,44 @@
 
 #include "push_swap.h"
 
-int 			count_nums(char *str)
+char			is_push(char ch)
 {
-	int 		i;
-	int 		q;
+	if (ch == 'a')
+		return (ch);
+	else if (ch == 'b')
+		return (ch);
+	else
+		return (0);
+}
+
+char			is_swap(char ch)
+{
+	if (ch == 'a')
+		return (ch);
+	else if (ch == 'b')
+		return (ch);
+	else if (ch == 's')
+		return ('s');
+	else
+		return (0);
+}
+
+char			is_rotate(char ch)
+{
+	if (ch == 'a')
+		return (ch);
+	else if (ch == 'b')
+		return ('b');
+	else if (ch == 'r')
+		return ('r');
+	else
+		return (0);
+}
+
+int				count_nums(char *str)
+{
+	int			i;
+	int			q;
 
 	i = 0;
 	q = 0;
@@ -31,21 +65,6 @@ int 			count_nums(char *str)
 	return (q);
 }
 
-char			is_push(char ch)
-{
-	return ((char)(ch == 'a' ? 'a' : ch == 'b' ? 'b' : 0));
-}
-
-char			is_swap(char ch)
-{
-	return ((char)(ch == 'a' ? 'a' : ch == 'b' ? 'b' : ch == 's' ? 's' : 0));
-}
-
-char			is_rotate(char ch)
-{
-	return ((char)(ch == 'a' ? 'a' : ch == 'b' ? 'b' : ch == 'r' ? 'r' : 0));
-}
-
 void			free_ins(t_list **ins)
 {
 	t_list		*curr;
@@ -59,12 +78,4 @@ void			free_ins(t_list **ins)
 		free(curr);
 		curr = next;
 	}
-}
-
-void			put_error(int type, t_list **stack)
-{
-	if (type == 3)
-		free_ins(stack);
-	write(2, "Error", 5);
-	exit (type);
 }

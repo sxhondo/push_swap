@@ -1,21 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ps_utilities1.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/30 19:18:53 by sxhondo           #+#    #+#             */
+/*   Updated: 2019/10/30 19:18:53 by sxhondo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int 			get_value_for_index(t_list **stack, int index)
+int				get_index_for_value(t_list **stack, int value)
 {
-	t_list		*tmp;
-
-	tmp = *stack;
-	while (index)
-	{
-		tmp = tmp->next;
-		index--;
-	}
-	return (*((int *)tmp->content));
-}
-
-int 			get_index_for_value(t_list **stack, int value)
-{
-	int 		i;
+	int			i;
 	t_list		*tmp;
 
 	i = 0;
@@ -30,10 +29,10 @@ int 			get_index_for_value(t_list **stack, int value)
 	return (-1);
 }
 
-int 			find_less(t_list **stack, int min)
+int				find_less(t_list **stack, int min)
 {
 	t_list		*tmp;
-	int 		i;
+	int			i;
 
 	i = 0;
 	tmp = *stack;
@@ -47,10 +46,10 @@ int 			find_less(t_list **stack, int min)
 	return (-1);
 }
 
-int 			find_greater(t_list **stack, int val)
+int				find_greater(t_list **stack, int val)
 {
 	t_list		*tmp;
-	int 		i;
+	int			i;
 
 	i = 0;
 	tmp = *stack;
@@ -64,12 +63,11 @@ int 			find_greater(t_list **stack, int val)
 	return (-1);
 }
 
-
-int 			find_minmax(t_list **stack, int mode)
+int				find_minmax(t_list **stack, int mode)
 {
 	t_list		*i;
 	t_list		*j;
-	int 		curr;
+	int			curr;
 
 	i = *stack;
 	while (i)
@@ -87,50 +85,7 @@ int 			find_minmax(t_list **stack, int mode)
 	return (-1);
 }
 
-int 			find_less_greater(t_list **stack, int min, int max)
-{
-	t_list		*tmp;
-	int 		i;
-
-	i = 0;
-	tmp = *stack;
-	while (tmp)
-	{
-		if (*((int *)tmp->content) < min && *((int *)tmp->content) > max)
-			return (i);
-		i++;
-		tmp = tmp->next;
-	}
-	return (-1);
-}
-
-int					rot_index_on_top(t_list **stack, int index, char dst)
-{
-	int 		llen;
-
-	llen = ft_lstlen(stack);
-	if (index < 0)
-		return (0);
-	if (index <= llen / 2)
-	{
-		while (index-- > 0)
-		{
-			do_rot(stack);
-			ft_printf("r%c\n", dst);
-		}
-	}
-	else
-	{
-		while (index++ <= llen - 1)
-		{
-			do_rev_rot(stack);
-			ft_printf("rr%c\n", dst);
-		}
-	}
-	return (1);
-}
-
-int 			is_sorted(t_list **stack, int mode)
+int				is_sorted(t_list **stack, int mode)
 {
 	t_list		*tmp;
 
@@ -147,20 +102,4 @@ int 			is_sorted(t_list **stack, int mode)
 			return (0);
 	}
 	return (1);
-}
-
-
-int 			take_int_delete_node(t_list **tab)
-{
-	int 			j;
-	t_list			*next;
-	t_list			*curr;
-
-	curr = *tab;
-	next = curr->next;
-	j = *((int *)curr->content);
-	ft_memdel(&curr->content);
-	free(curr);
-	*tab = next;
-	return (j);
 }

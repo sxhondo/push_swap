@@ -12,18 +12,18 @@
 
 #include "push_swap.h"
 
-static int 		check_atoi(const char *str, int mode)
+static int		check_atoi(const char *str, int mode)
 {
-	int 		sign;
-	long 		res;
-	unsigned 	i;
+	int			sign;
+	long		res;
+	unsigned	i;
 
 	i = 0;
 	res = 0;
 	sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 		sign = str[i++] == '-' ? -1 : 1;
-	if ((mode && !str[i]) || (mode && !ft_isdigit(str[i])))
+	if ((mode && !str[i]) || !ft_isdigit(str[i]))
 		put_error(1, NULL);
 	while (str[i] && ft_isdigit(str[i]))
 	{
@@ -38,10 +38,10 @@ static int 		check_atoi(const char *str, int mode)
 	return ((int)(res * sign));
 }
 
-static int 		find_duplicates(const int tab[], int max)
+static int		find_duplicates(const int tab[], unsigned max)
 {
-	int 		i;
-	int 		j;
+	unsigned	i;
+	unsigned	j;
 
 	i = 0;
 	while (i < max)
@@ -62,7 +62,7 @@ int				*validate_array(int argc, char **argv)
 {
 	unsigned	i;
 	unsigned	j;
-	int 		tab[argc];
+	int			tab[argc];
 	int			*t;
 
 	j = 0;
@@ -81,12 +81,12 @@ int				*validate_array(int argc, char **argv)
 	return (t);
 }
 
-int 			*validate_string(char *str)
+int				*validate_string(char *str)
 {
-	int 		i;
-	int 		j;
-	int 		*nums;
-	int 		tab[count_nums(str)];
+	int			i;
+	int			j;
+	int			*nums;
+	int			tab[count_nums(str)];
 
 	i = 0;
 	j = count_nums(str);
@@ -95,18 +95,15 @@ int 			*validate_string(char *str)
 		while (*str && (*str == ' ' || *str == '\t'))
 			str++;
 		if (!*str)
-			break;
+			break ;
 		tab[i++] = check_atoi(str, 1);
 		str += ft_nblen(tab[i - 1]);
 	}
 	if (find_duplicates(tab, j))
 		put_error(1, NULL);
-	i = 0;
+	i = -1;
 	nums = (int *)malloc(sizeof(int) * j);
-	while (i < j)
-	{
+	while (i++ < j)
 		nums[i] = tab[i];
-		i++;
-	}
 	return (nums);
 }

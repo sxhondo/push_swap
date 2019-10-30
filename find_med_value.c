@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_med_value.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/30 19:12:49 by sxhondo           #+#    #+#             */
+/*   Updated: 2019/10/30 19:12:50 by sxhondo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int 		arithmetic_mean(t_list **stack, int llen)
+static int		arithmetic_mean(t_list **stack, int llen)
 {
-	int64_t 	res;
+	int64_t		res;
 	t_list		*p;
 
 	res = 0;
@@ -18,7 +30,7 @@ static int 		arithmetic_mean(t_list **stack, int llen)
 	return ((int)res);
 }
 
-static int 		find_match(t_list **stack, int value)
+static int		find_match(t_list **stack, int value)
 {
 	t_list		*tmp;
 
@@ -32,11 +44,11 @@ static int 		find_match(t_list **stack, int value)
 	return (0);
 }
 
-int 			find_medvalue(t_list **stack)
+int				find_medvalue(t_list **stack)
 {
-	int 		res;
-	int 		llen;
-	int 		i;
+	int			res;
+	int			llen;
+	int			i;
 
 	llen = ft_lstlen(stack);
 	res = arithmetic_mean(stack, llen);
@@ -53,4 +65,3 @@ int 			find_medvalue(t_list **stack)
 	}
 	return (-1);
 }
-
