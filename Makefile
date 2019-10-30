@@ -19,10 +19,12 @@ CFLAGS = -g
 
 LIB_DIR = libft
 LIB_INC = libft/incs
+INC = push_swap.h
 
 CH_SRCS=\
 	apply_instruction.c\
 	instructions.c\
+	ps_utilities1.c\
 	ps_utilities2.c\
 	graphical_utilities.c\
 	validation.c\
@@ -43,10 +45,10 @@ PS_SRCS=\
 	graphical_utilities.c\
 	main_push_swap.c
 
-all: $(PS)
+all: $(PS) $(CH)
 
-$(CH): $(CH_SRCS)
+$(CH): $(INC) $(CH_SRCS)
 	$(CC) $(CFLAGS) $(CH_SRCS) -L $(LIB_DIR) -lft -I $(LIB_INC) -o $(CH)
 
-$(PS): $(PS_SRCS)
+$(PS): $(INC) $(PS_SRCS)
 	$(CC) $(CFLAGS) $(PS_SRCS) -L $(LIB_DIR) -lft -I $(LIB_INC) -o $(PS)

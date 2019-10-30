@@ -23,7 +23,7 @@ static int 		check_atoi(const char *str, int mode)
 	sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 		sign = str[i++] == '-' ? -1 : 1;
-	if (mode && !str[i])
+	if ((mode && !str[i]) || (mode && !ft_isdigit(str[i])))
 		put_error(1, NULL);
 	while (str[i] && ft_isdigit(str[i]))
 	{

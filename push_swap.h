@@ -43,8 +43,9 @@ void				sort_three(t_list **stack);
 int					insertion_sort(t_list **a, t_list **b, int n);
 
 /*
-** push_swap_utilities.c
+** ps_utilities1.c
  */
+int 				is_sorted(t_list **stack, int mode);
 int 				get_index_for_value(t_list **stack, int value);
 int 				get_value_for_index(t_list **stack, int index);
 int 				take_int_delete_node(t_list **tab);
@@ -63,7 +64,7 @@ int 				find_medvalue(t_list **stack);
 
 int 				find_less(t_list **stack, int min);
 int 				find_greater(t_list **stack, int val);
-int 				is_sorted(t_list **stack, int mode);
+
 int					rot_index_on_top(t_list **stack, int index, char dst);
 int 				find_minmax(t_list **stack, int mode);
 
@@ -90,7 +91,6 @@ t_list				*read_instructions();
 ** parse_arguments.c
  */
 char 				**parse_array(const char *str);
-
 
 /*
 ** instructions

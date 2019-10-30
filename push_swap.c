@@ -21,9 +21,8 @@ static void			push_larger_half(t_list **a, t_list **b)
 	head = *((int *)(*a)->content);
 	while (head != min)
 	{
-		do_push(a, b, 'b');
+		print_push(a, b, 'b');
 		head = *((int *)(*a)->content);
-		ft_printf("pb\n");
 	}
 }
 
@@ -85,7 +84,7 @@ static void		sort_small_stack(t_list **a, t_list **b)
 	{
 		tmp = find_minmax(a, 0);
 		rot_index_on_top(a, get_index_for_value(a, tmp), 'a');
-		do_push(a, b, 'b');
+		print_push(a, b, 'b');
 	}
 	if (b)
 	{
@@ -106,7 +105,7 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 	a = fill_a(nums, arg_am);
 	if (ft_lstlen(&a) <= 5)
 		sort_small_stack(&a, &b);
-	else
+	else if (!is_sorted(&a, 0))
 	{
 		i = find_medvalue(&a);
 		while ((tmp = find_less(&a, i)) > -1)
@@ -116,6 +115,5 @@ void 			sort_stacks(int *nums, unsigned arg_am)
 		}
 		back_track(&a, &b);
 	}
-	print_hor(&a, &b);
 	free_ins(&a);
 }

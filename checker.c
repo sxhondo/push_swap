@@ -26,12 +26,12 @@ static void		get_instruction(char *str, t_op *op, int bytes)
 	}
 	else if (*str == 'r' && ++str)
 	{
-		if (*str == 'r' && bytes == 4 && ++str)
+		if (*str == 'r' && bytes == 3 && ++str)
 		{
 			op->operation |= REVROT;
 			op->stack = is_rotate(*str);
 		}
-		else if (bytes == 3)
+		else if (bytes == 2)
 		{
 			op->operation |= ROT;
 			op->stack = is_rotate(*str);
@@ -39,18 +39,20 @@ static void		get_instruction(char *str, t_op *op, int bytes)
 	}
 }
 
-static t_op		*parse_instruction(char *buf, int bytes)
+static t_op		*parse_instruction(char *buf)
 {
 	t_op		*ops;
+	int 		len;
 
+	if ((len = ft_strlen(buf)) > 4 || len == 1)
+		return (NULL);
 	if (!(ops = (t_op*)malloc(sizeof(t_op))))
 		return (NULL);
 	ops->operation = 0;
 	ops->stack = 0;
-	get_instruction(buf, ops, bytes);
+	get_instruction(buf, ops, len);
 	if (!ops->stack || !ops->operation)
 	{
-		put_error(5, NULL);
 		free(ops);
 		return (NULL);
 	}
@@ -59,26 +61,26 @@ static t_op		*parse_instruction(char *buf, int bytes)
 
 t_list			*read_instructions()
 {
-	char 		buf[10];
-	int 		bytes;
 	t_op		*ops;
 	t_list		*node;
 	t_list		*instr;
+	char 		*buf;
+	int 		ret;
 
 	instr = NULL;
-	while((bytes = read(0, buf, 10)))
+	while ((get_next_line(0, &buf)))
 	{
-		buf[bytes] = '\0';
-		ft_printf("Q: %s\n", buf);
-		if (bytes <= 2 || bytes > 4 || !(ops = parse_instruction(buf, bytes)))
+		if (!(ops = parse_instruction(buf)))
 		{
-			put_error(4, NULL);
+			ft_strdel(&buf);
 			free_ins(&instr);
-			return (NULL);
+			write(2, "Error", 5);
+			exit (1);
 		}
 		if (!(node = ft_lstnew(ops, sizeof(ops))))
 			return (NULL);
 		ft_lstpushback(&instr, node);
+		ft_strdel(&buf);
 		free (ops);
 	}
 	return (instr);
