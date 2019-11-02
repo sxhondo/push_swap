@@ -6,7 +6,7 @@
 #    By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/26 20:02:38 by sxhondo           #+#    #+#              #
-#    Updated: 2019/11/01 19:28:30 by sxhondo          ###   ########.fr        #
+#    Updated: 2019/11/02 15:38:25 by sxhondo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ CH = checker
 PS = push_swap
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
 SRCS_DIR = srcs/
 LIB = libft.a
-LIB_DIR = libft
+LIB_DIR = libft/
 LIB_INC = $(LIB_DIR)/incs
+LIB_FT = $(LIB_DIR)$(LIB)
 
 INC_DIR = ./
 INC = push_swap.h
@@ -54,16 +55,16 @@ PS_OBJ = $(PS_SRCS:%.c=%.o)
 
 all: $(LIB) $(CH) $(PS)
 
-$(PS): $(PS_OBJ)
+$(PS): $(PS_OBJ) $(LIB_FT)
 	$(CC) $(CFLAGS) $(PS_OBJ) -L $(LIB_DIR) -lft -o $(PS)
 
-$(CH): $(CH_OBJ)
+$(CH): $(CH_OBJ) $(LIB_FT)
 	$(CC) $(CFLAGS) $(CH_OBJ) -L $(LIB_DIR) -lft -o $(CH)
 
 %.o: $(SRCS_DIR)%.c $(INC)
 	$(CC) -c $(CFLAGS) -I $(LIB_INC) -I $(INC_DIR) $<
 
-$(LIB):
+$(LIB): $(LIB_DIR)
 	make -C $(LIB_DIR)
 
 clean:

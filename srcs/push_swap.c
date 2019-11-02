@@ -12,18 +12,47 @@
 
 #include "push_swap.h"
 
-static void			push_larger_half(t_list **a, t_list **b, int verb)
+static int			push_larger_half(t_list **a, t_list **b, int verb)
 {
+	int 			i;
+	int 			min_i;
 	int				min;
 	int				head;
+	int 			new_pi;
+	int 			j;
 
+	i = 0;
 	min = find_minmax(a, 0);
+	min_i = get_index_for_value(a, min);
+	if (min_i == 2)
+	{
+		print_rot(a, b, 'a', verb);
+		print_rot(a, b, 'a', verb);
+//		print_hor(a, b);
+		return (0);
+	}
+	new_pi = find_medvalue(a, min_i - 1);
 	head = *((int *)(*a)->content);
+//	print_hor(a, b);
+	j = 0;
 	while (head != min)
 	{
-		print_push(a, b, 'b', verb);
+		if (head < new_pi)
+		{
+			print_push(a, b, 'b', verb);
+//			print_hor(a, b);
+
+		}
+		else
+		{
+			print_rot(a, b, 'a', verb);
+//			print_hor(a, b);
+			i++;
+		}
 		head = *((int *)(*a)->content);
 	}
+//	print_hor(a, b);
+	return (i);
 }
 
 static void			quick_sort(t_list **a, t_list **b, t_list **tab, int verb)
@@ -34,9 +63,12 @@ static void			quick_sort(t_list **a, t_list **b, t_list **tab, int verb)
 	int				i;
 
 	j = 0;
-	if (ft_lstlen(b) <= 45)
+	if (ft_lstlen(b) <= 5)
+	{
+//		print_hor(a, b);
 		return ;
-	med = find_medvalue(b);
+	}
+	med = find_medvalue(b, ft_lstlen(b));
 	while ((i = find_greater(b, med)) >= 0 && ++j)
 	{
 		rot_index_on_top(b, i, verb, 'b');
@@ -54,28 +86,39 @@ static void			quick_sort(t_list **a, t_list **b, t_list **tab, int verb)
 static void			back_track(t_list **a, t_list **b, int verb)
 {
 	int				i;
+	int 			ret;
 	t_list			*tab;
 
 	tab = NULL;
+//	print_hor(a, b);
+	if (is_sorted(a, 0) && !*b)
+		return;
 	while (1)
 	{
 		if (!*b)
 			return ;
 		quick_sort(a, b, &tab, verb);
+//		print_hor(a, b);
+
 		i = insertion_sort(a, b, ft_lstlen(b), verb);
+//		print_hor(a, b);
+
 		while (i--)
-		{
-			print_push(a, b, 'a', verb);
 			print_rot(a, b, 'a', verb);
-		}
+//		print_hor(a, b);
 		if (!tab)
 			break ;
 		i = take_int_delete_node(&tab);
 		while (i--)
 			print_push(a, b, 'b', verb);
 	}
-	push_larger_half(a, b, verb);
+//	print_hor(a, b);
+	ret = push_larger_half(a, b, verb);
+	while (ret--)
+		print_rev_rot(a, b, 'a', verb);
+//	print_hor(a, b);
 	back_track(a, b, verb);
+
 }
 
 static void			sort_small_stack(t_list **a, t_list **b, int verb)
@@ -102,6 +145,19 @@ static void			sort_small_stack(t_list **a, t_list **b, int verb)
 	}
 }
 
+int 			get_value_for_index(t_list **stack, int index)
+{
+	t_list		*tmp;
+
+	tmp = *stack;
+	while (index)
+	{
+		tmp = tmp->next;
+		index--;
+	}
+	return (*((int *)tmp->content));
+}
+
 void				sort_stacks(int *nums, unsigned arg_am, int verb)
 {
 	t_list			*a;
@@ -115,7 +171,7 @@ void				sort_stacks(int *nums, unsigned arg_am, int verb)
 		sort_small_stack(&a, &b, verb);
 	else if (!is_sorted(&a, 0))
 	{
-		i = find_medvalue(&a);
+		i = find_medvalue(&a, ft_lstlen(&a));
 		while ((tmp = find_less(&a, i)) > -1)
 		{
 			rot_index_on_top(&a, tmp, verb, 'a');
@@ -123,7 +179,7 @@ void				sort_stacks(int *nums, unsigned arg_am, int verb)
 		}
 		back_track(&a, &b, verb);
 	}
-	if (verb == 1 || verb == 3)
+//	if (verb == 1 || verb == 3)
 		print_hor(&a, &b);
 	free_ins(&a);
 }

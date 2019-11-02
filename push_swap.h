@@ -6,7 +6,7 @@
 /*   By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 15:16:55 by sxhondo           #+#    #+#             */
-/*   Updated: 2019/11/01 19:15:25 by sxhondo          ###   ########.fr       */
+/*   Updated: 2019/11/02 15:43:20 by sxhondo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void				print_push(t_list **a, t_list **b, char dst, int verb);
 void				print_rot(t_list **a, t_list **b, char dst, int verb);
 void				print_rev_rot(t_list **a, t_list **b, char dst, int verb);
 void				print_swap(t_list **a, t_list **b, char dst, int verb);
-
+void				print_rr(t_list **a, t_list **b, int verb);
 /*
 ** graphical_utilites.c
 */
@@ -113,6 +113,6 @@ void				print_hor(t_list **a, t_list **b);
 /*
 ** find_med_value.c
 */
-int					find_medvalue(t_list **stack);
+int					find_medvalue(t_list **stack, int max_len);
 
 #endif

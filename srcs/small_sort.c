@@ -24,56 +24,101 @@ void				sort_two(t_list **a_s, t_list **b_s, char dst, int verb)
 		print_swap(a_s, b_s, dst, verb);
 }
 
-void				sort_three(t_list **a_s, t_list **b_s, int verb)
+void				sort_three(t_list **a, t_list **b, int verb)
 {
 	int				abc[3];
+	int 			q, w, e;
 
-	while (!is_sorted(b_s, 0))
+//	print_hor(a, b);
+	while (!is_sorted(b, 1))
 	{
-		abc[0] = *((int *)(*b_s)->content);
-		abc[1] = *((int *)(*b_s)->next->content);
-		abc[2] = *((int *)(*b_s)->next->next->content);
-		if (abc[0] > abc[1] && abc[0] > abc[2] && abc[1] < abc[2])
-			print_rot(a_s, b_s, 'b', verb);
-		if (abc[0] > abc[1] && abc[0] > abc[2] && abc[1] > abc[2])
+//		abc[0] = *((int *)(*b)->content);
+//		abc[1] = *((int *)(*b)->next->content);
+//		abc[2] = *((int *)(*b)->next->next->content);
+		q = *((int *)(*b)->content);
+		w = *((int *)(*b)->next->content);
+		e = *((int *)(*b)->next->next->content);
+
+		if (q > w && q > e && w < e)
 		{
-			print_swap(a_s, b_s, 'b', verb);
-			print_rev_rot(a_s, b_s, 'b', verb);
+			print_swap(a, b, 'b', verb);
+			print_rot(a, b, 'b', verb);
+//			print_hor(a, b);
 		}
-		if (abc[0] > abc[1] && abc[0] < abc[2] && abc[1] < abc[2])
-			print_swap(a_s, b_s, 'b', verb);
-		if (abc[0] < abc[1] && abc[0] > abc[2] && abc[1] > abc[2])
-			print_rev_rot(a_s, b_s, 'b', verb);
-		if (abc[0] < abc[1] && abc[0] < abc[2] && abc[1] > abc[2])
+		if (q < w && w < e && w < e)
 		{
-			print_swap(a_s, b_s, 'b', verb);
-			print_rot(a_s, b_s, 'b', verb);
+			print_swap(a, b, 'b', verb);
+			print_rev_rot(a, b, 'b', verb);
 		}
+		if (q < w && q > e && w > q)
+			print_swap(a, b, 'b', verb);
+		if (q > w && q < e && w < q)
+			print_rev_rot(a, b, 'b', verb);
+		if (q < w && q < e && w > e)
+			print_rot(a, b, 'b', verb);
+
 	}
 }
 
+//int					rot_min_on_top_b(t_list **a, t_list **b, int verb, int i)
+//{
+//	int				llen;
+//	int 			min;
+//	int 			index;
+//
+//	llen = ft_lstlen(b);
+//	min = find_minmax(b, 0);
+//	index = get_index_for_value(b, min);
+//	print_hor(a, b);
+//	if (index < 0)
+//		return (0);
+//	if (index <= llen / 2)
+//	{
+//		while (index-- > 0)
+//		{
+//			print_rot(a, b, 'b', verb);
+//		}
+//	}
+//	else
+//	{
+//		while (index++ <= llen - 1)
+//			print_rev_rot(a, b, 'b', verb);
+//	}
+//	return (1);
+//}
+
 int					insertion_sort(t_list **a, t_list **b, int n, int verb)
 {
-	int				tmp;
+	int 			len;
+	int 			tmp;
 
-	while (n > 3)
+//	print_hor(a, b);
+	if (n > 3)
 	{
 		tmp = find_minmax(b, 0);
-		rot_index_on_top(b, get_index_for_value(b, tmp), verb, 'b');
+		tmp = get_index_for_value(b, tmp);
+		rot_index_on_top(b, tmp, verb, 'b');
 		print_push(a, b, 'a', verb);
 		print_rot(a, b, 'a', verb);
 		n--;
 	}
+//	print_hor(a, b);
 	if (n == 3)
 	{
 		sort_three(a, b, verb);
-		return (n);
+//		print_hor(a, b);
 	}
-	else if (n == 2)
+	if (n == 2)
 	{
-		sort_two(a, b, 'b', verb);
-		return (n);
+		if ((*b)->content > (*b)->next->content)
+			print_swap(a, b, 'b', verb);
+
 	}
-	else
-		return (1);
+	len = tmp = ft_lstlen(b);
+	while (tmp--)
+	{
+		print_push(a, b, 'a', verb);
+//		print_hor(a, b);
+	}
+	return (len);
 }

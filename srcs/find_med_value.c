@@ -14,12 +14,14 @@
 
 static int		arithmetic_mean(t_list **stack, int llen)
 {
+	int 		le;
 	int64_t		res;
 	t_list		*p;
 
+	le = llen;
 	res = 0;
 	p = *stack;
-	while (p)
+	while (p && le--)
 	{
 		res += *((int *)p->content);
 		p = p->next;
@@ -44,14 +46,14 @@ static int		find_match(t_list **stack, int value)
 	return (0);
 }
 
-int				find_medvalue(t_list **stack)
+int				find_medvalue(t_list **stack, int len)
 {
 	int			res;
-	int			llen;
+//	int			llen;
 	int			i;
 
-	llen = ft_lstlen(stack);
-	res = arithmetic_mean(stack, llen);
+//	llen = ft_lstlen(stack);
+	res = arithmetic_mean(stack, len);
 	i = 0;
 	while (res)
 	{

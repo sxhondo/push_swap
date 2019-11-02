@@ -85,6 +85,8 @@ int				find_minmax(t_list **stack, int mode)
 	return (-1);
 }
 
+
+
 int				is_sorted(t_list **stack, int mode)
 {
 	t_list		*tmp;
