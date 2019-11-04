@@ -102,6 +102,8 @@ void				print_rot(t_list **a, t_list **b, char dst, int verb);
 void				print_rev_rot(t_list **a, t_list **b, char dst, int verb);
 void				print_swap(t_list **a, t_list **b, char dst, int verb);
 void				print_rr(t_list **a, t_list **b, int verb);
+void				print_rrr(t_list **a, t_list **b, int verb);
+
 /*
 ** graphical_utilites.c
 */

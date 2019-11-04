@@ -12,49 +12,6 @@
 
 #include "push_swap.h"
 
-static int			push_larger_half(t_list **a, t_list **b, int verb)
-{
-	int 			i;
-	int 			min_i;
-	int				min;
-	int				head;
-	int 			new_pi;
-	int 			j;
-
-	i = 0;
-	min = find_minmax(a, 0);
-	min_i = get_index_for_value(a, min);
-	if (min_i == 2)
-	{
-		print_rot(a, b, 'a', verb);
-		print_rot(a, b, 'a', verb);
-//		print_hor(a, b);
-		return (0);
-	}
-	new_pi = find_medvalue(a, min_i - 1);
-	head = *((int *)(*a)->content);
-//	print_hor(a, b);
-	j = 0;
-	while (head != min)
-	{
-		if (head < new_pi)
-		{
-			print_push(a, b, 'b', verb);
-//			print_hor(a, b);
-
-		}
-		else
-		{
-			print_rot(a, b, 'a', verb);
-//			print_hor(a, b);
-			i++;
-		}
-		head = *((int *)(*a)->content);
-	}
-//	print_hor(a, b);
-	return (i);
-}
-
 static void			quick_sort(t_list **a, t_list **b, t_list **tab, int verb)
 {
 	int				med;
@@ -63,11 +20,8 @@ static void			quick_sort(t_list **a, t_list **b, t_list **tab, int verb)
 	int				i;
 
 	j = 0;
-	if (ft_lstlen(b) <= 5)
-	{
-//		print_hor(a, b);
+	if (ft_lstlen(b) <= 15)
 		return ;
-	}
 	med = find_medvalue(b, ft_lstlen(b));
 	while ((i = find_greater(b, med)) >= 0 && ++j)
 	{
@@ -83,43 +37,79 @@ static void			quick_sort(t_list **a, t_list **b, t_list **tab, int verb)
 	quick_sort(a, b, tab, verb);
 }
 
-static void			back_track(t_list **a, t_list **b, int verb)
+static void			mini_qs(t_list **a, t_list **b, int rra, int verb)
 {
-	int				i;
-	int 			ret;
-	t_list			*tab;
+	int 			i;
 
-	tab = NULL;
-//	print_hor(a, b);
-	if (is_sorted(a, 0) && !*b)
-		return;
-	while (1)
+	i = ft_lstlen(b) / 2;
+	while (i)
 	{
-		if (!*b)
-			return ;
-		quick_sort(a, b, &tab, verb);
-//		print_hor(a, b);
-
-		i = insertion_sort(a, b, ft_lstlen(b), verb);
-//		print_hor(a, b);
-
-		while (i--)
-			print_rot(a, b, 'a', verb);
-//		print_hor(a, b);
-		if (!tab)
-			break ;
-		i = take_int_delete_node(&tab);
-		while (i--)
-			print_push(a, b, 'b', verb);
+		print_rrr(a, b, verb);
+		rra--;
+		i--;
 	}
-//	print_hor(a, b);
-	ret = push_larger_half(a, b, verb);
-	while (ret--)
+	while (rra--)
 		print_rev_rot(a, b, 'a', verb);
-//	print_hor(a, b);
-	back_track(a, b, verb);
+}
+
+static int			push_larger_half(t_list **a, t_list **b, int max, int verb)
+{
+	int 			i;
+	int				head;
+	int 			new_pi;
+
+	new_pi = find_medvalue(a, max);
+	head = *((int *)(*a)->content);
+	if (max == 2)
+	{
+		sort_two(a, b, 'a', verb);
+		while (max--)
+			print_rot(a, b, 'a', verb);
+		return (0);
+	}
+	i = 0;
+	while (max--)
+	{
+		if (head < new_pi)
+			print_push(a, b, 'b', verb);
+		else if (++i)
+			print_rot(a, b, 'a', verb);
+		head = *((int *)(*a)->content);
+	}
+	return (i);
+
 
 }
+
+void				back_track(t_list **a, t_list **b, int verb, t_list *tab)
+{
+	int				i;
+	int 			q;
+
+	i = 0;
+	if (is_sorted(a, 0) && !*b)
+		return;
+	quick_sort(a, b, &tab, verb);
+	insertion_sort(a, b, ft_lstlen(b), verb);
+	if ((i = take_int_delete_node(&tab)) == 0)
+		return;
+	if (i < 15)
+		while (i--)
+			print_push(a, b, 'b', verb);
+	else
+	{
+		q = push_larger_half(a, b, i, verb);
+		mini_qs(a, b, q, verb);
+		insertion_sort(a, b, ft_lstlen(b), verb);
+		while (q--)
+			print_push(a, b, 'b', verb);
+		insertion_sort(a, b, ft_lstlen(b), verb);
+		return;
+	}
+	print_hor(a, b);
+	back_track(a, b, verb, tab);
+}
+
 
 static void			sort_small_stack(t_list **a, t_list **b, int verb)
 {
@@ -177,7 +167,8 @@ void				sort_stacks(int *nums, unsigned arg_am, int verb)
 			rot_index_on_top(&a, tmp, verb, 'a');
 			print_push(&a, &b, 'b', verb);
 		}
-		back_track(&a, &b, verb);
+		t_list *tab = NULL;
+		back_track(&a, &b, verb, tab);
 	}
 //	if (verb == 1 || verb == 3)
 		print_hor(&a, &b);

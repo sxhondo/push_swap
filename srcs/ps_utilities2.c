@@ -69,6 +69,8 @@ int					take_int_delete_node(t_list **tab)
 	t_list			*next;
 	t_list			*curr;
 
+	if (!*tab)
+		return (0);
 	curr = *tab;
 	next = curr->next;
 	j = *((int *)curr->content);

@@ -92,33 +92,28 @@ int					insertion_sort(t_list **a, t_list **b, int n, int verb)
 	int 			len;
 	int 			tmp;
 
+	len = n;
 //	print_hor(a, b);
-	if (n > 3)
+	while(n > 3)
 	{
-		tmp = find_minmax(b, 0);
+		tmp = find_minmax(b, 1);
 		tmp = get_index_for_value(b, tmp);
 		rot_index_on_top(b, tmp, verb, 'b');
 		print_push(a, b, 'a', verb);
-		print_rot(a, b, 'a', verb);
 		n--;
 	}
 //	print_hor(a, b);
 	if (n == 3)
-	{
 		sort_three(a, b, verb);
-//		print_hor(a, b);
-	}
 	if (n == 2)
 	{
-		if ((*b)->content > (*b)->next->content)
+		if ((*b)->content < (*b)->next->content)
 			print_swap(a, b, 'b', verb);
-
 	}
-	len = tmp = ft_lstlen(b);
+	tmp = ft_lstlen(b);
 	while (tmp--)
-	{
 		print_push(a, b, 'a', verb);
-//		print_hor(a, b);
-	}
-	return (len);
+	while (len--)
+		print_rot(a, b, 'a', verb);
+//	print_hor(a, b);
 }
