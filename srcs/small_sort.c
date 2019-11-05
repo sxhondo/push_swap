@@ -12,108 +12,72 @@
 
 #include "push_swap.h"
 
-void				sort_two(t_list **a_s, t_list **b_s, char dst, int verb)
+void				sort_two(t_list **a, t_list **b, char dst, int verb)
 {
-	int				a;
-	int				b;
+	int				c;
+	int				n;
 
-	a = dst == 'a' ? *((int *)(*a_s)->content) : *((int *)(*b_s)->content);
-	b = dst == 'a' ? *((int *)(*a_s)->next->content) :
-											*((int *)(*b_s)->next->content);
-	if (a > b)
-		print_swap(a_s, b_s, dst, verb);
+	if (dst == 'a')
+	{
+		c = *((int *)(*a)->content);
+		n = *((int *)(*a)->next->content);
+	}
+	else
+	{
+		c = *((int *)(*b)->content);
+		n = *((int *)(*b)->next->content);
+	}
+	if (c > n)
+		print_swap(a, b, dst, verb);
 }
 
-void				sort_three(t_list **a, t_list **b, int verb)
+void				sort_small_stack(t_list **a, t_list **b, int verb)
 {
-	int				abc[3];
-	int 			q, w, e;
+	int				tmp;
 
-//	print_hor(a, b);
-	while (!is_sorted(b, 1))
+	while (!is_sorted(a, 0))
 	{
-//		abc[0] = *((int *)(*b)->content);
-//		abc[1] = *((int *)(*b)->next->content);
-//		abc[2] = *((int *)(*b)->next->next->content);
-		q = *((int *)(*b)->content);
-		w = *((int *)(*b)->next->content);
-		e = *((int *)(*b)->next->next->content);
-
-		if (q > w && q > e && w < e)
+		if (ft_lstlen(a) == 2)
 		{
-			print_swap(a, b, 'b', verb);
-			print_rot(a, b, 'b', verb);
-//			print_hor(a, b);
+			sort_two(a, b, 'a', verb);
+			break ;
 		}
-		if (q < w && w < e && w < e)
-		{
-			print_swap(a, b, 'b', verb);
-			print_rev_rot(a, b, 'b', verb);
-		}
-		if (q < w && q > e && w > q)
-			print_swap(a, b, 'b', verb);
-		if (q > w && q < e && w < q)
-			print_rev_rot(a, b, 'b', verb);
-		if (q < w && q < e && w > e)
-			print_rot(a, b, 'b', verb);
-
+		tmp = find_minmax(a, 0);
+		rot_index_on_top(a, get_index_for_value(a, tmp), verb, 'a');
+		print_push(a, b, 'b', verb);
+	}
+	if (*b)
+	{
+		tmp = ft_lstlen(b);
+		while (tmp--)
+			print_push(a, b, 'a', verb);
 	}
 }
 
-//int					rot_min_on_top_b(t_list **a, t_list **b, int verb, int i)
-//{
-//	int				llen;
-//	int 			min;
-//	int 			index;
-//
-//	llen = ft_lstlen(b);
-//	min = find_minmax(b, 0);
-//	index = get_index_for_value(b, min);
-//	print_hor(a, b);
-//	if (index < 0)
-//		return (0);
-//	if (index <= llen / 2)
-//	{
-//		while (index-- > 0)
-//		{
-//			print_rot(a, b, 'b', verb);
-//		}
-//	}
-//	else
-//	{
-//		while (index++ <= llen - 1)
-//			print_rev_rot(a, b, 'b', verb);
-//	}
-//	return (1);
-//}
 
-int					insertion_sort(t_list **a, t_list **b, int n, int verb)
+void				insertion_sort(t_list **a, t_list **b, int verb)
 {
-	int 			len;
-	int 			tmp;
+	int 			min;
+	int 			max;
+	int 			min_i;
+	int 			max_i;
+	int 			min_way;
+	int 			max_way;
+	int 			i;
 
-	len = n;
-//	print_hor(a, b);
-	while(n > 3)
+	i = 0;
+	while (*b)
 	{
-		tmp = find_minmax(b, 1);
-		tmp = get_index_for_value(b, tmp);
-		rot_index_on_top(b, tmp, verb, 'b');
+		min = find_minmax(b, 0);
+		max = find_minmax(b, 1);
+		min_i = get_index_for_value(b, min);
+		max_i = get_index_for_value(b, max);
+		min_way = min_i < ft_lstlen(b) / 2 ? min_i : ft_lstlen(b) - min_i;
+		max_way = max_i < ft_lstlen(b) / 2 ? max_i : ft_lstlen(b) - max_i;
+		rot_index_on_top(b, min_way < max_way ? min_i : max_i, verb, 'b');
 		print_push(a, b, 'a', verb);
-		n--;
+		min == *((int *)(*a)->content) ? print_rot(a, b, 'a', verb) : i++;
 	}
-//	print_hor(a, b);
-	if (n == 3)
-		sort_three(a, b, verb);
-	if (n == 2)
-	{
-		if ((*b)->content < (*b)->next->content)
-			print_swap(a, b, 'b', verb);
-	}
-	tmp = ft_lstlen(b);
-	while (tmp--)
-		print_push(a, b, 'a', verb);
-	while (len--)
+	while (i--)
 		print_rot(a, b, 'a', verb);
-//	print_hor(a, b);
 }

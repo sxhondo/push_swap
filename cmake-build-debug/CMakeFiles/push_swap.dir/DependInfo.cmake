@@ -90,7 +90,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/sxhondo/push_swap/libft/srcs/process_utilities.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/libft/srcs/process_utilities.c.o"
   "/Users/sxhondo/push_swap/libft/srcs/processings.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/libft/srcs/processings.c.o"
   "/Users/sxhondo/push_swap/srcs/apply_instruction.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/apply_instruction.c.o"
-  "/Users/sxhondo/push_swap/srcs/check.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/check.c.o"
   "/Users/sxhondo/push_swap/srcs/find_med_value.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/find_med_value.c.o"
   "/Users/sxhondo/push_swap/srcs/graphical_utilities.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o"
   "/Users/sxhondo/push_swap/srcs/instructions.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/instructions.c.o"
@@ -99,10 +98,11 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/sxhondo/push_swap/srcs/ps_utilities1.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o"
   "/Users/sxhondo/push_swap/srcs/ps_utilities2.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o"
   "/Users/sxhondo/push_swap/srcs/push_swap.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/push_swap.c.o"
-  "/Users/sxhondo/push_swap/srcs/short_cuts.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/short_cuts.c.o"
+  "/Users/sxhondo/push_swap/srcs/read_parse_instructions.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o"
   "/Users/sxhondo/push_swap/srcs/small_sort.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/small_sort.c.o"
   "/Users/sxhondo/push_swap/srcs/validation.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/validation.c.o"
   "/Users/sxhondo/push_swap/srcs/validation_utilities.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o"
+  "/Users/sxhondo/push_swap/srcs/verbose.c" "/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles/push_swap.dir/srcs/verbose.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

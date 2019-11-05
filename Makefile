@@ -14,7 +14,7 @@ CH = checker
 PS = push_swap
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS_DIR = srcs/
 LIB = libft.a
@@ -26,29 +26,32 @@ INC_DIR = ./
 INC = push_swap.h
 
 CH_SRCS=\
+	validation.c\
+	read_parse_instructions.c\
+	validation_utilities.c\
 	apply_instruction.c\
 	instructions.c\
 	ps_utilities1.c\
 	ps_utilities2.c\
 	graphical_utilities.c\
-	validation.c\
-	check.c\
-	short_cuts.c\
-	validation_utilities.c\
+	verbose.c\
 	main_checker.c
 
 PS_SRCS=\
 	push_swap.c\
-	ps_utilities1.c\
-	ps_utilities2.c\
+	validation.c\
+	apply_instruction.c\
+	read_parse_instructions.c\
+	validation_utilities.c\
 	small_sort.c\
 	find_med_value.c\
+	ps_utilities1.c\
+	ps_utilities2.c\
 	instructions.c\
-	validation_utilities.c\
-	validation.c\
 	graphical_utilities.c\
-	short_cuts.c\
+	verbose.c\
 	main_push_swap.c
+
 
 CH_OBJ = $(CH_SRCS:%.c=%.o)
 PS_OBJ = $(PS_SRCS:%.c=%.o)

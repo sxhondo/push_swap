@@ -16,51 +16,8 @@ void				put_error(int type, t_list **stack)
 {
 	if (type == 3)
 		free_ins(stack);
-	write(2, "Error", 5);
+	write(2, "Error\n", 6);
 	exit(type);
-}
-
-t_list				*fill_a(int *nums, unsigned arg_am)
-{
-	unsigned		i;
-	t_list			*node;
-	t_list			*res;
-
-	i = 0;
-	res = NULL;
-	while (i < arg_am)
-	{
-		if (!(node = ft_lstnew(&nums[i], sizeof(int))))
-			return (NULL);
-		ft_lstpushback(&res, node);
-		i++;
-	}
-	return (res);
-}
-
-void				free_stacks(t_list **a, t_list **b)
-{
-	t_list			*curr;
-	t_list			*next;
-
-	curr = *a;
-	while (curr)
-	{
-		next = curr->next;
-		ft_memdel(&curr->content);
-		free(curr);
-		curr = next;
-	}
-	*a = NULL;
-	curr = *b;
-	while (curr)
-	{
-		next = curr->next;
-		ft_memdel(&curr->content);
-		free(curr);
-		curr = next;
-	}
-	*b = NULL;
 }
 
 int					take_int_delete_node(t_list **tab)
@@ -101,4 +58,19 @@ int					rot_index_on_top(t_list **stack, int index,
 					dst == 'b' ? stack : NULL, dst, verb);
 	}
 	return (1);
+}
+
+void				optimised_rot(t_list **a, t_list **b, int rra, int verb)
+{
+	int				i;
+
+	i = ft_lstlen(b) / 2;
+	while (i)
+	{
+		print_rrr(a, b, verb);
+		rra--;
+		i--;
+	}
+	while (rra--)
+		print_rev_rot(a, b, 'a', verb);
 }

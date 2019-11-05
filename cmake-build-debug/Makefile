@@ -2445,33 +2445,6 @@ srcs/apply_instruction.c.s:
 	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/apply_instruction.c.s
 .PHONY : srcs/apply_instruction.c.s
 
-srcs/check.o: srcs/check.c.o
-
-.PHONY : srcs/check.o
-
-# target to build an object file
-srcs/check.c.o:
-	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/check.c.o
-.PHONY : srcs/check.c.o
-
-srcs/check.i: srcs/check.c.i
-
-.PHONY : srcs/check.i
-
-# target to preprocess a source file
-srcs/check.c.i:
-	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/check.c.i
-.PHONY : srcs/check.c.i
-
-srcs/check.s: srcs/check.c.s
-
-.PHONY : srcs/check.s
-
-# target to generate assembly for a file
-srcs/check.c.s:
-	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/check.c.s
-.PHONY : srcs/check.c.s
-
 srcs/find_med_value.o: srcs/find_med_value.c.o
 
 .PHONY : srcs/find_med_value.o
@@ -2688,32 +2661,32 @@ srcs/push_swap.c.s:
 	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/push_swap.c.s
 .PHONY : srcs/push_swap.c.s
 
-srcs/short_cuts.o: srcs/short_cuts.c.o
+srcs/read_parse_instructions.o: srcs/read_parse_instructions.c.o
 
-.PHONY : srcs/short_cuts.o
+.PHONY : srcs/read_parse_instructions.o
 
 # target to build an object file
-srcs/short_cuts.c.o:
-	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/short_cuts.c.o
-.PHONY : srcs/short_cuts.c.o
+srcs/read_parse_instructions.c.o:
+	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o
+.PHONY : srcs/read_parse_instructions.c.o
 
-srcs/short_cuts.i: srcs/short_cuts.c.i
+srcs/read_parse_instructions.i: srcs/read_parse_instructions.c.i
 
-.PHONY : srcs/short_cuts.i
+.PHONY : srcs/read_parse_instructions.i
 
 # target to preprocess a source file
-srcs/short_cuts.c.i:
-	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/short_cuts.c.i
-.PHONY : srcs/short_cuts.c.i
+srcs/read_parse_instructions.c.i:
+	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.i
+.PHONY : srcs/read_parse_instructions.c.i
 
-srcs/short_cuts.s: srcs/short_cuts.c.s
+srcs/read_parse_instructions.s: srcs/read_parse_instructions.c.s
 
-.PHONY : srcs/short_cuts.s
+.PHONY : srcs/read_parse_instructions.s
 
 # target to generate assembly for a file
-srcs/short_cuts.c.s:
-	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/short_cuts.c.s
-.PHONY : srcs/short_cuts.c.s
+srcs/read_parse_instructions.c.s:
+	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.s
+.PHONY : srcs/read_parse_instructions.c.s
 
 srcs/small_sort.o: srcs/small_sort.c.o
 
@@ -2795,6 +2768,33 @@ srcs/validation_utilities.s: srcs/validation_utilities.c.s
 srcs/validation_utilities.c.s:
 	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/validation_utilities.c.s
 .PHONY : srcs/validation_utilities.c.s
+
+srcs/verbose.o: srcs/verbose.c.o
+
+.PHONY : srcs/verbose.o
+
+# target to build an object file
+srcs/verbose.c.o:
+	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/verbose.c.o
+.PHONY : srcs/verbose.c.o
+
+srcs/verbose.i: srcs/verbose.c.i
+
+.PHONY : srcs/verbose.i
+
+# target to preprocess a source file
+srcs/verbose.c.i:
+	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/verbose.c.i
+.PHONY : srcs/verbose.c.i
+
+srcs/verbose.s: srcs/verbose.c.s
+
+.PHONY : srcs/verbose.s
+
+# target to generate assembly for a file
+srcs/verbose.c.s:
+	$(MAKE) -f CMakeFiles/push_swap.dir/build.make CMakeFiles/push_swap.dir/srcs/verbose.c.s
+.PHONY : srcs/verbose.c.s
 
 # Help Target
 help:
@@ -3063,9 +3063,6 @@ help:
 	@echo "... srcs/apply_instruction.o"
 	@echo "... srcs/apply_instruction.i"
 	@echo "... srcs/apply_instruction.s"
-	@echo "... srcs/check.o"
-	@echo "... srcs/check.i"
-	@echo "... srcs/check.s"
 	@echo "... srcs/find_med_value.o"
 	@echo "... srcs/find_med_value.i"
 	@echo "... srcs/find_med_value.s"
@@ -3090,9 +3087,9 @@ help:
 	@echo "... srcs/push_swap.o"
 	@echo "... srcs/push_swap.i"
 	@echo "... srcs/push_swap.s"
-	@echo "... srcs/short_cuts.o"
-	@echo "... srcs/short_cuts.i"
-	@echo "... srcs/short_cuts.s"
+	@echo "... srcs/read_parse_instructions.o"
+	@echo "... srcs/read_parse_instructions.i"
+	@echo "... srcs/read_parse_instructions.s"
 	@echo "... srcs/small_sort.o"
 	@echo "... srcs/small_sort.i"
 	@echo "... srcs/small_sort.s"
@@ -3102,6 +3099,9 @@ help:
 	@echo "... srcs/validation_utilities.o"
 	@echo "... srcs/validation_utilities.i"
 	@echo "... srcs/validation_utilities.s"
+	@echo "... srcs/verbose.o"
+	@echo "... srcs/verbose.i"
+	@echo "... srcs/verbose.s"
 .PHONY : help
 
 

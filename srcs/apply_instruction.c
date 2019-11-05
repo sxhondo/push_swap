@@ -12,8 +12,51 @@
 
 #include "push_swap.h"
 
-static void				choose_operation2(t_list **a, t_list **b,
-												unsigned op, unsigned char st)
+t_list				*fill_a(int *nums, unsigned arg_am)
+{
+	unsigned		i;
+	t_list			*node;
+	t_list			*res;
+
+	i = 0;
+	res = NULL;
+	while (i < arg_am)
+	{
+		if (!(node = ft_lstnew(&nums[i], sizeof(int))))
+			return (NULL);
+		ft_lstpushback(&res, node);
+		i++;
+	}
+	return (res);
+}
+
+void				free_stacks(t_list **a, t_list **b)
+{
+	t_list			*curr;
+	t_list			*next;
+
+	curr = *a;
+	while (curr)
+	{
+		next = curr->next;
+		ft_memdel(&curr->content);
+		free(curr);
+		curr = next;
+	}
+	*a = NULL;
+	curr = *b;
+	while (curr)
+	{
+		next = curr->next;
+		ft_memdel(&curr->content);
+		free(curr);
+		curr = next;
+	}
+	*b = NULL;
+}
+
+static void			choose_operation2(t_list **a, t_list **b,
+										unsigned op, unsigned char st)
 {
 	if (op & ROT)
 	{
@@ -41,8 +84,8 @@ static void				choose_operation2(t_list **a, t_list **b,
 	}
 }
 
-static void				choose_operation1(t_list **a, t_list **b,
-												unsigned op, unsigned char st)
+static void			choose_operation1(t_list **a, t_list **b,
+										unsigned op, unsigned char st)
 {
 	if (op & SWAP)
 	{
@@ -67,13 +110,13 @@ static void				choose_operation1(t_list **a, t_list **b,
 		choose_operation2(a, b, op, st);
 }
 
-void					apply_instruction(int *nums, t_list *ins,
-															unsigned arg_am)
+void				apply_instruction(int *nums, t_list *ins,
+														unsigned arg_am)
 {
-	t_list				*a;
-	t_list				*b;
-	unsigned			op;
-	unsigned char		st;
+	t_list			*a;
+	t_list			*b;
+	unsigned		op;
+	unsigned char	st;
 
 	b = NULL;
 	a = fill_a(nums, arg_am);

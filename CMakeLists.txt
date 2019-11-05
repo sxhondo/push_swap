@@ -96,7 +96,6 @@ add_executable(push_swap
         libft/srcs/process_utilities.c
         libft/srcs/processings.c
         srcs/apply_instruction.c
-        srcs/check.c
         srcs/find_med_value.c
         srcs/graphical_utilities.c
         srcs/instructions.c
@@ -105,8 +104,9 @@ add_executable(push_swap
         srcs/ps_utilities1.c
         srcs/ps_utilities2.c
         srcs/push_swap.c
-        srcs/short_cuts.c
+        srcs/read_parse_instructions.c
         srcs/small_sort.c
         srcs/validation.c
         srcs/validation_utilities.c
+        srcs/verbose.c
         push_swap.h)

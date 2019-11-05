@@ -272,11 +272,6 @@ CMakeFiles/push_swap.dir/srcs/apply_instruction.c.o
  ../libft/incs/ft_printf.h
  ../libft/incs/libft.h
  /Users/sxhondo/push_swap/srcs/apply_instruction.c
-CMakeFiles/push_swap.dir/srcs/check.c.o
- .././push_swap.h
- ../libft/incs/ft_printf.h
- ../libft/incs/libft.h
- /Users/sxhondo/push_swap/srcs/check.c
 CMakeFiles/push_swap.dir/srcs/find_med_value.c.o
  .././push_swap.h
  ../libft/incs/ft_printf.h
@@ -293,6 +288,9 @@ CMakeFiles/push_swap.dir/srcs/instructions.c.o
  ../libft/incs/libft.h
  /Users/sxhondo/push_swap/srcs/instructions.c
 CMakeFiles/push_swap.dir/srcs/main_checker.c.o
+ .././push_swap.h
+ ../libft/incs/ft_printf.h
+ ../libft/incs/libft.h
  /Users/sxhondo/push_swap/srcs/main_checker.c
 CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o
  .././push_swap.h
@@ -314,11 +312,11 @@ CMakeFiles/push_swap.dir/srcs/push_swap.c.o
  ../libft/incs/ft_printf.h
  ../libft/incs/libft.h
  /Users/sxhondo/push_swap/srcs/push_swap.c
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.o
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o
  .././push_swap.h
  ../libft/incs/ft_printf.h
  ../libft/incs/libft.h
- /Users/sxhondo/push_swap/srcs/short_cuts.c
+ /Users/sxhondo/push_swap/srcs/read_parse_instructions.c
 CMakeFiles/push_swap.dir/srcs/small_sort.c.o
  .././push_swap.h
  ../libft/incs/ft_printf.h
@@ -334,3 +332,8 @@ CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o
  ../libft/incs/ft_printf.h
  ../libft/incs/libft.h
  /Users/sxhondo/push_swap/srcs/validation_utilities.c
+CMakeFiles/push_swap.dir/srcs/verbose.c.o
+ .././push_swap.h
+ ../libft/incs/ft_printf.h
+ ../libft/incs/libft.h
+ /Users/sxhondo/push_swap/srcs/verbose.c

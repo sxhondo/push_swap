@@ -1175,22 +1175,9 @@ CMakeFiles/push_swap.dir/srcs/apply_instruction.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/push_swap.dir/srcs/apply_instruction.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/sxhondo/push_swap/srcs/apply_instruction.c -o CMakeFiles/push_swap.dir/srcs/apply_instruction.c.s
 
-CMakeFiles/push_swap.dir/srcs/check.c.o: CMakeFiles/push_swap.dir/flags.make
-CMakeFiles/push_swap.dir/srcs/check.c.o: ../srcs/check.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building C object CMakeFiles/push_swap.dir/srcs/check.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/check.c.o   -c /Users/sxhondo/push_swap/srcs/check.c
-
-CMakeFiles/push_swap.dir/srcs/check.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/push_swap.dir/srcs/check.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/sxhondo/push_swap/srcs/check.c > CMakeFiles/push_swap.dir/srcs/check.c.i
-
-CMakeFiles/push_swap.dir/srcs/check.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/push_swap.dir/srcs/check.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/sxhondo/push_swap/srcs/check.c -o CMakeFiles/push_swap.dir/srcs/check.c.s
-
 CMakeFiles/push_swap.dir/srcs/find_med_value.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/find_med_value.c.o: ../srcs/find_med_value.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building C object CMakeFiles/push_swap.dir/srcs/find_med_value.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building C object CMakeFiles/push_swap.dir/srcs/find_med_value.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/find_med_value.c.o   -c /Users/sxhondo/push_swap/srcs/find_med_value.c
 
 CMakeFiles/push_swap.dir/srcs/find_med_value.c.i: cmake_force
@@ -1203,7 +1190,7 @@ CMakeFiles/push_swap.dir/srcs/find_med_value.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o: ../srcs/graphical_utilities.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building C object CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building C object CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o   -c /Users/sxhondo/push_swap/srcs/graphical_utilities.c
 
 CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.i: cmake_force
@@ -1216,7 +1203,7 @@ CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/instructions.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/instructions.c.o: ../srcs/instructions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building C object CMakeFiles/push_swap.dir/srcs/instructions.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building C object CMakeFiles/push_swap.dir/srcs/instructions.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/instructions.c.o   -c /Users/sxhondo/push_swap/srcs/instructions.c
 
 CMakeFiles/push_swap.dir/srcs/instructions.c.i: cmake_force
@@ -1229,7 +1216,7 @@ CMakeFiles/push_swap.dir/srcs/instructions.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/main_checker.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/main_checker.c.o: ../srcs/main_checker.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building C object CMakeFiles/push_swap.dir/srcs/main_checker.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building C object CMakeFiles/push_swap.dir/srcs/main_checker.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/main_checker.c.o   -c /Users/sxhondo/push_swap/srcs/main_checker.c
 
 CMakeFiles/push_swap.dir/srcs/main_checker.c.i: cmake_force
@@ -1242,7 +1229,7 @@ CMakeFiles/push_swap.dir/srcs/main_checker.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o: ../srcs/main_push_swap.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building C object CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building C object CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o   -c /Users/sxhondo/push_swap/srcs/main_push_swap.c
 
 CMakeFiles/push_swap.dir/srcs/main_push_swap.c.i: cmake_force
@@ -1255,7 +1242,7 @@ CMakeFiles/push_swap.dir/srcs/main_push_swap.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o: ../srcs/ps_utilities1.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building C object CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building C object CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o   -c /Users/sxhondo/push_swap/srcs/ps_utilities1.c
 
 CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.i: cmake_force
@@ -1268,7 +1255,7 @@ CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o: ../srcs/ps_utilities2.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building C object CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building C object CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o   -c /Users/sxhondo/push_swap/srcs/ps_utilities2.c
 
 CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.i: cmake_force
@@ -1281,7 +1268,7 @@ CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/push_swap.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/push_swap.c.o: ../srcs/push_swap.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building C object CMakeFiles/push_swap.dir/srcs/push_swap.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building C object CMakeFiles/push_swap.dir/srcs/push_swap.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/push_swap.c.o   -c /Users/sxhondo/push_swap/srcs/push_swap.c
 
 CMakeFiles/push_swap.dir/srcs/push_swap.c.i: cmake_force
@@ -1292,22 +1279,22 @@ CMakeFiles/push_swap.dir/srcs/push_swap.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/push_swap.dir/srcs/push_swap.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/sxhondo/push_swap/srcs/push_swap.c -o CMakeFiles/push_swap.dir/srcs/push_swap.c.s
 
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.o: CMakeFiles/push_swap.dir/flags.make
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.o: ../srcs/short_cuts.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building C object CMakeFiles/push_swap.dir/srcs/short_cuts.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/short_cuts.c.o   -c /Users/sxhondo/push_swap/srcs/short_cuts.c
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o: CMakeFiles/push_swap.dir/flags.make
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o: ../srcs/read_parse_instructions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building C object CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o   -c /Users/sxhondo/push_swap/srcs/read_parse_instructions.c
 
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/push_swap.dir/srcs/short_cuts.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/sxhondo/push_swap/srcs/short_cuts.c > CMakeFiles/push_swap.dir/srcs/short_cuts.c.i
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/sxhondo/push_swap/srcs/read_parse_instructions.c > CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.i
 
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/push_swap.dir/srcs/short_cuts.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/sxhondo/push_swap/srcs/short_cuts.c -o CMakeFiles/push_swap.dir/srcs/short_cuts.c.s
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/sxhondo/push_swap/srcs/read_parse_instructions.c -o CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.s
 
 CMakeFiles/push_swap.dir/srcs/small_sort.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/small_sort.c.o: ../srcs/small_sort.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building C object CMakeFiles/push_swap.dir/srcs/small_sort.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building C object CMakeFiles/push_swap.dir/srcs/small_sort.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/small_sort.c.o   -c /Users/sxhondo/push_swap/srcs/small_sort.c
 
 CMakeFiles/push_swap.dir/srcs/small_sort.c.i: cmake_force
@@ -1320,7 +1307,7 @@ CMakeFiles/push_swap.dir/srcs/small_sort.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/validation.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/validation.c.o: ../srcs/validation.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building C object CMakeFiles/push_swap.dir/srcs/validation.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building C object CMakeFiles/push_swap.dir/srcs/validation.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/validation.c.o   -c /Users/sxhondo/push_swap/srcs/validation.c
 
 CMakeFiles/push_swap.dir/srcs/validation.c.i: cmake_force
@@ -1333,7 +1320,7 @@ CMakeFiles/push_swap.dir/srcs/validation.c.s: cmake_force
 
 CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o: CMakeFiles/push_swap.dir/flags.make
 CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o: ../srcs/validation_utilities.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building C object CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building C object CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o   -c /Users/sxhondo/push_swap/srcs/validation_utilities.c
 
 CMakeFiles/push_swap.dir/srcs/validation_utilities.c.i: cmake_force
@@ -1343,6 +1330,19 @@ CMakeFiles/push_swap.dir/srcs/validation_utilities.c.i: cmake_force
 CMakeFiles/push_swap.dir/srcs/validation_utilities.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/push_swap.dir/srcs/validation_utilities.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/sxhondo/push_swap/srcs/validation_utilities.c -o CMakeFiles/push_swap.dir/srcs/validation_utilities.c.s
+
+CMakeFiles/push_swap.dir/srcs/verbose.c.o: CMakeFiles/push_swap.dir/flags.make
+CMakeFiles/push_swap.dir/srcs/verbose.c.o: ../srcs/verbose.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building C object CMakeFiles/push_swap.dir/srcs/verbose.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/push_swap.dir/srcs/verbose.c.o   -c /Users/sxhondo/push_swap/srcs/verbose.c
+
+CMakeFiles/push_swap.dir/srcs/verbose.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/push_swap.dir/srcs/verbose.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/sxhondo/push_swap/srcs/verbose.c > CMakeFiles/push_swap.dir/srcs/verbose.c.i
+
+CMakeFiles/push_swap.dir/srcs/verbose.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/push_swap.dir/srcs/verbose.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/sxhondo/push_swap/srcs/verbose.c -o CMakeFiles/push_swap.dir/srcs/verbose.c.s
 
 # Object files for target push_swap
 push_swap_OBJECTS = \
@@ -1432,7 +1432,6 @@ push_swap_OBJECTS = \
 "CMakeFiles/push_swap.dir/libft/srcs/process_utilities.c.o" \
 "CMakeFiles/push_swap.dir/libft/srcs/processings.c.o" \
 "CMakeFiles/push_swap.dir/srcs/apply_instruction.c.o" \
-"CMakeFiles/push_swap.dir/srcs/check.c.o" \
 "CMakeFiles/push_swap.dir/srcs/find_med_value.c.o" \
 "CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o" \
 "CMakeFiles/push_swap.dir/srcs/instructions.c.o" \
@@ -1441,10 +1440,11 @@ push_swap_OBJECTS = \
 "CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o" \
 "CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o" \
 "CMakeFiles/push_swap.dir/srcs/push_swap.c.o" \
-"CMakeFiles/push_swap.dir/srcs/short_cuts.c.o" \
+"CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o" \
 "CMakeFiles/push_swap.dir/srcs/small_sort.c.o" \
 "CMakeFiles/push_swap.dir/srcs/validation.c.o" \
-"CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o"
+"CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o" \
+"CMakeFiles/push_swap.dir/srcs/verbose.c.o"
 
 # External object files for target push_swap
 push_swap_EXTERNAL_OBJECTS =
@@ -1535,7 +1535,6 @@ push_swap: CMakeFiles/push_swap.dir/libft/srcs/place_num.c.o
 push_swap: CMakeFiles/push_swap.dir/libft/srcs/process_utilities.c.o
 push_swap: CMakeFiles/push_swap.dir/libft/srcs/processings.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/apply_instruction.c.o
-push_swap: CMakeFiles/push_swap.dir/srcs/check.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/find_med_value.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/graphical_utilities.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/instructions.c.o
@@ -1544,10 +1543,11 @@ push_swap: CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/ps_utilities1.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/ps_utilities2.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/push_swap.c.o
-push_swap: CMakeFiles/push_swap.dir/srcs/short_cuts.c.o
+push_swap: CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/small_sort.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/validation.c.o
 push_swap: CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o
+push_swap: CMakeFiles/push_swap.dir/srcs/verbose.c.o
 push_swap: CMakeFiles/push_swap.dir/build.make
 push_swap: CMakeFiles/push_swap.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/sxhondo/push_swap/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Linking C executable push_swap"

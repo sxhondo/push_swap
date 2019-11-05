@@ -272,11 +272,6 @@ CMakeFiles/push_swap.dir/srcs/apply_instruction.c.o: ../libft/incs/ft_printf.h
 CMakeFiles/push_swap.dir/srcs/apply_instruction.c.o: ../libft/incs/libft.h
 CMakeFiles/push_swap.dir/srcs/apply_instruction.c.o: ../srcs/apply_instruction.c
 
-CMakeFiles/push_swap.dir/srcs/check.c.o: .././push_swap.h
-CMakeFiles/push_swap.dir/srcs/check.c.o: ../libft/incs/ft_printf.h
-CMakeFiles/push_swap.dir/srcs/check.c.o: ../libft/incs/libft.h
-CMakeFiles/push_swap.dir/srcs/check.c.o: ../srcs/check.c
-
 CMakeFiles/push_swap.dir/srcs/find_med_value.c.o: .././push_swap.h
 CMakeFiles/push_swap.dir/srcs/find_med_value.c.o: ../libft/incs/ft_printf.h
 CMakeFiles/push_swap.dir/srcs/find_med_value.c.o: ../libft/incs/libft.h
@@ -292,6 +287,9 @@ CMakeFiles/push_swap.dir/srcs/instructions.c.o: ../libft/incs/ft_printf.h
 CMakeFiles/push_swap.dir/srcs/instructions.c.o: ../libft/incs/libft.h
 CMakeFiles/push_swap.dir/srcs/instructions.c.o: ../srcs/instructions.c
 
+CMakeFiles/push_swap.dir/srcs/main_checker.c.o: .././push_swap.h
+CMakeFiles/push_swap.dir/srcs/main_checker.c.o: ../libft/incs/ft_printf.h
+CMakeFiles/push_swap.dir/srcs/main_checker.c.o: ../libft/incs/libft.h
 CMakeFiles/push_swap.dir/srcs/main_checker.c.o: ../srcs/main_checker.c
 
 CMakeFiles/push_swap.dir/srcs/main_push_swap.c.o: .././push_swap.h
@@ -314,10 +312,10 @@ CMakeFiles/push_swap.dir/srcs/push_swap.c.o: ../libft/incs/ft_printf.h
 CMakeFiles/push_swap.dir/srcs/push_swap.c.o: ../libft/incs/libft.h
 CMakeFiles/push_swap.dir/srcs/push_swap.c.o: ../srcs/push_swap.c
 
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.o: .././push_swap.h
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.o: ../libft/incs/ft_printf.h
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.o: ../libft/incs/libft.h
-CMakeFiles/push_swap.dir/srcs/short_cuts.c.o: ../srcs/short_cuts.c
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o: .././push_swap.h
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o: ../libft/incs/ft_printf.h
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o: ../libft/incs/libft.h
+CMakeFiles/push_swap.dir/srcs/read_parse_instructions.c.o: ../srcs/read_parse_instructions.c
 
 CMakeFiles/push_swap.dir/srcs/small_sort.c.o: .././push_swap.h
 CMakeFiles/push_swap.dir/srcs/small_sort.c.o: ../libft/incs/ft_printf.h
@@ -333,4 +331,9 @@ CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o: .././push_swap.h
 CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o: ../libft/incs/ft_printf.h
 CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o: ../libft/incs/libft.h
 CMakeFiles/push_swap.dir/srcs/validation_utilities.c.o: ../srcs/validation_utilities.c
+
+CMakeFiles/push_swap.dir/srcs/verbose.c.o: .././push_swap.h
+CMakeFiles/push_swap.dir/srcs/verbose.c.o: ../libft/incs/ft_printf.h
+CMakeFiles/push_swap.dir/srcs/verbose.c.o: ../libft/incs/libft.h
+CMakeFiles/push_swap.dir/srcs/verbose.c.o: ../srcs/verbose.c
 

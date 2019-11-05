@@ -71,35 +71,3 @@ void		print_rev_rot(t_list **a, t_list **b, char dst, int verb)
 		system("clear");
 	}
 }
-
-void		print_rr(t_list **a, t_list **b, int verb)
-{
-	do_rot(a);
-	do_rot(b);
-	if (!verb)
-		ft_printf("rr\n");
-	if (verb == 2 || verb == 3)
-		ft_printf("exec: {Bred}rr\n{eoc}");
-	if (verb == 1 || verb == 3)
-	{
-		print_ver(a, b);
-		usleep(200000);
-		system("clear");
-	}
-}
-
-void		print_rrr(t_list **a, t_list **b, int verb)
-{
-	do_rev_rot(a);
-	do_rev_rot(b);
-	if (!verb)
-		ft_printf("rrr\n");
-	if (verb == 2 || verb == 3)
-		ft_printf("exec: {Bred}rrr\n{eoc}");
-	if (verb == 1 || verb == 3)
-	{
-		print_ver(a, b);
-		usleep(200000);
-		system("clear");
-	}
-}

@@ -28,7 +28,11 @@ stdlib.h
 fcntl.h
 -
 
-/Users/sxhondo/push_swap/srcs/push_swap.c
+/Users/sxhondo/push_swap/srcs/main_push_swap.c
+push_swap.h
+/Users/sxhondo/push_swap/srcs/push_swap.h
+
+/Users/sxhondo/push_swap/srcs/validation.c
 push_swap.h
 /Users/sxhondo/push_swap/srcs/push_swap.h
 

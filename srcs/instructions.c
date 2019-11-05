@@ -16,7 +16,7 @@ void			do_swap(t_list **stack)
 {
 	t_list		*tmp;
 
-	if (!*stack || ft_lstlen(stack) < 1)
+	if (!*stack || ft_lstlen(stack) <= 1)
 		return ;
 	tmp = (*stack)->next;
 	(*stack)->next = (*stack)->next->next;

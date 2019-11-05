@@ -14,7 +14,7 @@
 
 static int		arithmetic_mean(t_list **stack, int llen)
 {
-	int 		le;
+	int			le;
 	int64_t		res;
 	t_list		*p;
 
@@ -49,10 +49,8 @@ static int		find_match(t_list **stack, int value)
 int				find_medvalue(t_list **stack, int len)
 {
 	int			res;
-//	int			llen;
 	int			i;
 
-//	llen = ft_lstlen(stack);
 	res = arithmetic_mean(stack, len);
 	i = 0;
 	while (res)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_arguments.c                               :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 14:37:42 by sxhondo           #+#    #+#             */
-/*   Updated: 2019/09/29 14:37:43 by sxhondo          ###   ########.fr       */
+/*   Created: 2019/11/05 17:38:56 by sxhondo           #+#    #+#             */
+/*   Updated: 2019/11/05 17:38:58 by sxhondo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int		check_atoi(const char *str, int mode)
 		sign = str[i++] == '-' ? -1 : 1;
 	if ((mode && !str[i]) || !ft_isdigit(str[i]))
 		put_error(1, NULL);
+	if (!*str)
+		put_error(1, NULL);
 	while (str[i] && ft_isdigit(str[i]))
 	{
 		if (str[i] < '0' || str[i] > '9' || !str[i])
@@ -36,6 +38,17 @@ static int		check_atoi(const char *str, int mode)
 		i++;
 	}
 	return ((int)(res * sign));
+}
+
+static int 		check_symbols(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ' && *str != '-' && *str != '+' && !ft_isdigit(*str))
+			return (1);
+		str++;
+	}
+	return (0);
 }
 
 static int		find_duplicates(const int tab[], unsigned max)
@@ -68,16 +81,17 @@ int				*validate_array(int argc, char **argv)
 	j = 0;
 	i = 1;
 	while (argv[i])
+	{
+		if (check_symbols(argv[i]))
+			put_error(1, NULL);
 		tab[j++] = check_atoi(argv[i++], 0);
+	}
 	if (find_duplicates(tab, j))
 		put_error(1, NULL);
 	t = (int *)malloc(sizeof(int) * j);
-	i = 0;
-	while (i < j)
-	{
+	i = -1;
+	while (++i < j)
 		t[i] = tab[i];
-		i++;
-	}
 	return (t);
 }
 
@@ -90,17 +104,19 @@ int				*validate_string(char *str)
 
 	i = 0;
 	j = count_nums(str);
+	if (check_symbols(str))
+		put_error(1, NULL);
 	while (*str)
 	{
 		while (*str && (*str == ' ' || *str == '\t'))
 			str++;
-		if (!*str)
-			break ;
 		tab[i++] = check_atoi(str, 1);
+		str += (*str == '+' || *str == '-') ? 1 : 0;
 		str += ft_nblen(tab[i - 1]);
+		if (*str && *str != ' ')
+			put_error(1, NULL);
 	}
-	if (find_duplicates(tab, j))
-		put_error(1, NULL);
+	find_duplicates(tab, j) ? put_error(1, NULL) : NULL;
 	i = -1;
 	nums = (int *)malloc(sizeof(int) * j);
 	while (++i < j)

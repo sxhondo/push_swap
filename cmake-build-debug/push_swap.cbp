@@ -354,9 +354,6 @@
 		<Unit filename="/Users/sxhondo/push_swap/srcs/apply_instruction.c">
 			<Option target="push_swap"/>
 		</Unit>
-		<Unit filename="/Users/sxhondo/push_swap/srcs/check.c">
-			<Option target="push_swap"/>
-		</Unit>
 		<Unit filename="/Users/sxhondo/push_swap/srcs/find_med_value.c">
 			<Option target="push_swap"/>
 		</Unit>
@@ -381,7 +378,7 @@
 		<Unit filename="/Users/sxhondo/push_swap/srcs/push_swap.c">
 			<Option target="push_swap"/>
 		</Unit>
-		<Unit filename="/Users/sxhondo/push_swap/srcs/short_cuts.c">
+		<Unit filename="/Users/sxhondo/push_swap/srcs/read_parse_instructions.c">
 			<Option target="push_swap"/>
 		</Unit>
 		<Unit filename="/Users/sxhondo/push_swap/srcs/small_sort.c">
@@ -391,6 +388,9 @@
 			<Option target="push_swap"/>
 		</Unit>
 		<Unit filename="/Users/sxhondo/push_swap/srcs/validation_utilities.c">
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/sxhondo/push_swap/srcs/verbose.c">
 			<Option target="push_swap"/>
 		</Unit>
 		<Unit filename="/Users/sxhondo/push_swap/CMakeLists.txt">
