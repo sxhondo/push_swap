@@ -54,29 +54,26 @@ void				sort_small_stack(t_list **a, t_list **b, int verb)
 	}
 }
 
-
 void				insertion_sort(t_list **a, t_list **b, int verb)
 {
-	int 			min;
-	int 			max;
-	int 			min_i;
-	int 			max_i;
-	int 			min_way;
-	int 			max_way;
-	int 			i;
+	int				minmax[2];
+	int				ind[2];
+	int				min_way;
+	int				max_way;
+	int				i;
 
 	i = 0;
 	while (*b)
 	{
-		min = find_minmax(b, 0);
-		max = find_minmax(b, 1);
-		min_i = get_index_for_value(b, min);
-		max_i = get_index_for_value(b, max);
-		min_way = min_i < ft_lstlen(b) / 2 ? min_i : ft_lstlen(b) - min_i;
-		max_way = max_i < ft_lstlen(b) / 2 ? max_i : ft_lstlen(b) - max_i;
-		rot_index_on_top(b, min_way < max_way ? min_i : max_i, verb, 'b');
+		minmax[0] = find_minmax(b, 0);
+		minmax[1] = find_minmax(b, 1);
+		ind[0] = get_index_for_value(b, minmax[0]);
+		ind[1] = get_index_for_value(b, minmax[1]);
+		min_way = ind[0] < ft_lstlen(b) / 2 ? ind[0] : ft_lstlen(b) - ind[0];
+		max_way = ind[1] < ft_lstlen(b) / 2 ? ind[1] : ft_lstlen(b) - ind[1];
+		rot_index_on_top(b, min_way < max_way ? ind[0] : ind[1], verb, 'b');
 		print_push(a, b, 'a', verb);
-		min == *((int *)(*a)->content) ? print_rot(a, b, 'a', verb) : i++;
+		minmax[0] == *((int *)(*a)->content) ? print_rot(a, b, 'a', verb) : i++;
 	}
 	while (i--)
 		print_rot(a, b, 'a', verb);

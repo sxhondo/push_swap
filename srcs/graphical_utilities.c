@@ -17,7 +17,7 @@ unsigned				parse_verbose(char *str)
 	unsigned			v;
 
 	v = 0;
-	if (*str == '-')
+	if (str && *str == '-')
 	{
 		str++;
 		if (*str && *str == 'v')

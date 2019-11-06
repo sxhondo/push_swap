@@ -6,7 +6,7 @@
 /*   By: sxhondo <w13cho@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 15:16:55 by sxhondo           #+#    #+#             */
-/*   Updated: 2019/11/02 15:43:20 by sxhondo          ###   ########.fr       */
+/*   Updated: 2019/11/06 20:16:21 by sxhondo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void				do_push(t_list **a, t_list **b, char in);
 void				do_rot(t_list **stack);
 void				do_rev_rot(t_list **stack);
 
-
 /*
 ** small_sort.c
 */
@@ -100,7 +99,6 @@ void				put_error(int type, t_list **stack);
 int					take_int_delete_node(t_list **tab);
 int					rot_index_on_top(t_list **stack, int index,
 										int verb, char dst);
-
 /*
 ** ps_utilities2.c
 */
@@ -115,7 +113,6 @@ void				print_push(t_list **a, t_list **b, char dst, int verb);
 void				print_rot(t_list **a, t_list **b, char dst, int verb);
 void				print_rev_rot(t_list **a, t_list **b, char dst, int verb);
 void				print_swap(t_list **a, t_list **b, char dst, int verb);
-
 
 /*
 ** graphical_utilites.c

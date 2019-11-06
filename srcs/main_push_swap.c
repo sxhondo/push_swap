@@ -18,17 +18,21 @@ int				main(int ac, char **av)
 	int			i;
 	int			*nums;
 
-	v = 0;
 	if (ac == 2)
 	{
+		i = 0;
+		if ((v = (int)parse_verbose(av[1])))
+		{
+			while (av[1][i] && (av[1][i] == '-' || av[1][i] == 'v' ||
+								av[1][i] == 'c'))
+				av[1]++;
+		}
 		i = count_nums(av[1]);
 		nums = validate_string(av[1]);
 	}
-	else if (ac >= 3)
+	else if (ac >= 3 && (i = ac - 1))
 	{
-		i = ac - 1;
-		if ((v = (int)parse_verbose(av[1])) && --i)
-			av++;
+		((v = (int)parse_verbose(av[1])) && --i) ? av++ : NULL;
 		nums = validate_array(i, av);
 	}
 	else

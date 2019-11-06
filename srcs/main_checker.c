@@ -20,7 +20,8 @@ int				main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		i = count_nums(av[1]);
+		if (!(i = count_nums(av[1])))
+			return (0);
 		nums = validate_string(av[1]);
 	}
 	else if (ac >= 3)

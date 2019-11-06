@@ -12,35 +12,36 @@
 
 #include "push_swap.h"
 
-static int		check_atoi(const char *str, int mode)
+static int		check_atoi(const char *str, int *tab, int len)
 {
 	int			sign;
 	long		res;
-	unsigned	i;
+	int			i;
 
 	i = 0;
 	res = 0;
 	sign = 1;
-	if (str[i] == '-' || str[i] == '+')
-		sign = str[i++] == '-' ? -1 : 1;
-	if ((mode && !str[i]) || !ft_isdigit(str[i]))
+	if ((*str == '-' || *str == '+') && ++i)
+		sign = *str++ == '-' ? -1 : 1;
+	if (!*str || !ft_isdigit(*str))
 		put_error(1, NULL);
-	if (!*str)
-		put_error(1, NULL);
-	while (str[i] && ft_isdigit(str[i]))
+	while (*str && ft_isdigit(*str))
 	{
-		if (str[i] < '0' || str[i] > '9' || !str[i])
+		if (!*str || *str < '0' || *str > '9')
 			put_error(1, NULL);
-		res = res * 10 + (str[i] - '0');
+		res = res * 10 + (*str++ - '0');
+		i++;
 		if ((sign == 1 && res > INT32_MAX)
 			|| (sign == -1 && res - 2 >= INT32_MAX))
 			put_error(1, NULL);
-		i++;
 	}
-	return ((int)(res * sign));
+	if (*str && *str != ' ')
+		put_error(1, NULL);
+	tab[len] = ((int)res * sign);
+	return (i);
 }
 
-static int 		check_symbols(char *str)
+static int		check_symbols(char *str)
 {
 	while (*str)
 	{
@@ -73,8 +74,8 @@ static int		find_duplicates(const int tab[], unsigned max)
 
 int				*validate_array(int argc, char **argv)
 {
-	unsigned	i;
-	unsigned	j;
+	int			i;
+	int			j;
 	int			tab[argc];
 	int			*t;
 
@@ -84,7 +85,7 @@ int				*validate_array(int argc, char **argv)
 	{
 		if (check_symbols(argv[i]))
 			put_error(1, NULL);
-		tab[j++] = check_atoi(argv[i++], 0);
+		check_atoi(argv[i++], tab, j++);
 	}
 	if (find_duplicates(tab, j))
 		put_error(1, NULL);
@@ -110,11 +111,7 @@ int				*validate_string(char *str)
 	{
 		while (*str && (*str == ' ' || *str == '\t'))
 			str++;
-		tab[i++] = check_atoi(str, 1);
-		str += (*str == '+' || *str == '-') ? 1 : 0;
-		str += ft_nblen(tab[i - 1]);
-		if (*str && *str != ' ')
-			put_error(1, NULL);
+		str += check_atoi(str, tab, i++);
 	}
 	find_duplicates(tab, j) ? put_error(1, NULL) : NULL;
 	i = -1;

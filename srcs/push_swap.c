@@ -60,6 +60,7 @@ static int			push_larger_half(t_list **a, t_list **b, int max, int verb)
 static void			sort(t_list **a, t_list **b, int verb, t_list *tab)
 {
 	int				i;
+
 	if (is_sorted(a, 0) && !*b)
 		return ;
 	while (1)
