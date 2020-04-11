@@ -18,6 +18,8 @@ ARG=`ruby -e "puts (0..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./check
 ```sh
 python3 pyviz.py `ruby -e "puts (1..20).to_a.shuffle.join(' ')"
 ````
+![](./image)
+
 ## Summary
 + Main algorithm - quick-sort with a small modifications
 + Stacks are implemented via linked-lists.
