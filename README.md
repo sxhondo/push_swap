@@ -21,5 +21,5 @@ python3 pyviz.py `ruby -e "puts (1..20).to_a.shuffle.join(' ')"
 ![](./image)
 
 ## Summary
-+ Main algorithm - quick-sort with a small modifications
++ Main algorithm - quick-sort with small modifications
 + Stacks are implemented via linked-lists.
